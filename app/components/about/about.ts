@@ -6,11 +6,13 @@ import {AutoAuthenticator} from '../Request/Request'
 import {NameList} from '../../services/name_list';
 import User from '../../services/models/user'
 import {TablePlugIn} from '../plugins/tablePlugin'
+import {ChatBlinkDirective} from '../directive/directive'
+
 @Component({
   selector: 'about',
   templateUrl: './components/about/about.html',
   directives :[TablePlugIn],
-  providers: [User, AutoAuthenticator],
+  providers: [User, AutoAuthenticator, ChatBlinkDirective],
 })
 
 export class AboutCmp implements OnInit {

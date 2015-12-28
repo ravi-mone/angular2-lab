@@ -36,7 +36,7 @@ var ChatBlinkDirective = (function () {
     ChatBlinkDirective.TIME_TO_REPEAT = 1000;
     ChatBlinkDirective = __decorate([
         core_1.Directive({
-            selector: '[blink-message]',
+            selector: '.blink-message',
             host: {
                 '(mouseenter)': 'onMouseEnter()',
                 '(mouseleave)': 'onMouseLeave()'

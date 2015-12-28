@@ -20,22 +20,19 @@ class MdlUpgradeDirective {
 
 
 @Component({
-  selector: 'home',
-  templateUrl: './components/home/home.html',
-  styleUrls: ['./components/home/home.css'],
+  selector: 'login',
+  templateUrl: './components/login/login.html',
+  styleUrls: ['./components/login/login.css'],
   encapsulation:ViewEncapsulation.None,
   providers: [AutoAuthenticator, User],
   directives: [MdlUpgradeDirective]
 })
-export class HomeCmp {
+export class LoginCmp {
   username= 'BNT2010';
   password = 'bnt2010';
-  user=null;
   hideError= true;
-  authenticator=null;
   constructor(public user:User, private _router: Router, public authenticator : AutoAuthenticator){
-    this.user = user;
-    this.authenticator = authenticator;
+
     console.log('this.authenticator', this.authenticator)
   }
 
@@ -51,8 +48,8 @@ export class HomeCmp {
         this._router.navigate(['About']  /*['HeroDetail', { id: hero.id }]*/);
 
       });
+    }catch(e){
+      console.log(e)
     }
-  }catch(e){
-    console.log(e)
   }
 }

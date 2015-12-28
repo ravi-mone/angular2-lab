@@ -7,7 +7,7 @@ import {
 } from 'angular2/router';
 // import {HTTP_PROVIDERS} from 'angular2/http';
 
-import {HomeCmp} from '../home/home';
+import {LoginCmp} from '../login/login';
 import {AboutCmp} from '../about/about';
 import {NameList} from '../../services/name_list';
 
@@ -23,18 +23,19 @@ import {isEmpty} from "rxjs/operator/isEmpty";
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/login',      component: HomeCmp, name: 'Home', useAsDefault:true },
+  { path: '/login',      component: LoginCmp, name: 'login', useAsDefault:true },
   { path: '/about', component: AboutCmp, name: 'About' }
 ])
 export class AppCmp  implements AfterContentChecked  {
 
-  userSignedIn=false, user;
-  constructor(user:User){
-    this.user = user;
+  userSignedIn=false;
+  constructor(){
+
   }
 
 
   ngAfterContentChecked(){
+    console.log('calling multiple times', this.userSignedIn);
     if(JSON.parse(localStorage.getItem('pp.user'))){
       this.userSignedIn=true;
     }

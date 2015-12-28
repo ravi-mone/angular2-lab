@@ -12,7 +12,7 @@ bootstrap(AppCmp, [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,User,AutoAuthenticator,
   provide('APIEndpoint', {
-    useValue: 'http://some_end_point'
+    useValue: 'http://Some_URL_HERE'
   }),
   provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]).then((appRef: ComponentRef) => {

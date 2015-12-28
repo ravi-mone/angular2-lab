@@ -13,6 +13,7 @@ var Request_1 = require('../Request/Request');
 var name_list_1 = require('../../services/name_list');
 var user_1 = require('../../services/models/user');
 var tablePlugin_1 = require('../plugins/tablePlugin');
+var directive_1 = require('../directive/directive');
 var AboutCmp = (function () {
     function AboutCmp(list, user, authenticator) {
         var _this = this;
@@ -57,7 +58,7 @@ var AboutCmp = (function () {
             selector: 'about',
             templateUrl: './components/about/about.html',
             directives: [tablePlugin_1.TablePlugIn],
-            providers: [user_1.default, Request_1.AutoAuthenticator],
+            providers: [user_1.default, Request_1.AutoAuthenticator, directive_1.ChatBlinkDirective],
         }), 
         __metadata('design:paramtypes', [name_list_1.NameList, user_1.default, Request_1.AutoAuthenticator])
     ], AboutCmp);

@@ -10,7 +10,7 @@ import {Directive, ElementRef, EventEmitter, onMouseEnter, onMouseLeave, OnDestr
 import {Inject} from 'angular2/core';
 
 @Directive({
-    selector: '[blink-message]',
+    selector: '.blink-message',
     host: {
         '(mouseenter)': 'onMouseEnter()',
         '(mouseleave)': 'onMouseLeave()'

@@ -9,16 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
-var home_1 = require('../home/home');
+var login_1 = require('../login/login');
 var about_1 = require('../about/about');
 var name_list_1 = require('../../services/name_list');
-var user_1 = require('../../services/models/user');
 var AppCmp = (function () {
-    function AppCmp(user) {
+    function AppCmp() {
         this.userSignedIn = false;
-        this.user = user;
     }
     AppCmp.prototype.ngAfterContentChecked = function () {
+        console.log('calling multiple times', this.userSignedIn);
         if (JSON.parse(localStorage.getItem('pp.user'))) {
             this.userSignedIn = true;
         }
@@ -33,10 +32,10 @@ var AppCmp = (function () {
             directives: [router_1.ROUTER_DIRECTIVES]
         }),
         router_1.RouteConfig([
-            { path: '/login', component: home_1.HomeCmp, name: 'Home', useAsDefault: true },
+            { path: '/login', component: login_1.LoginCmp, name: 'login', useAsDefault: true },
             { path: '/about', component: about_1.AboutCmp, name: 'About' }
         ]), 
-        __metadata('design:paramtypes', [user_1.default])
+        __metadata('design:paramtypes', [])
     ], AppCmp);
     return AppCmp;
 })();

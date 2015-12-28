@@ -28,21 +28,17 @@ var MdlUpgradeDirective = (function () {
     ], MdlUpgradeDirective);
     return MdlUpgradeDirective;
 })();
-var HomeCmp = (function () {
-    function HomeCmp(user, _router, authenticator) {
+var LoginCmp = (function () {
+    function LoginCmp(user, _router, authenticator) {
         this.user = user;
         this._router = _router;
         this.authenticator = authenticator;
         this.username = 'BNT2010';
         this.password = 'bnt2010';
-        this.user = null;
         this.hideError = true;
-        this.authenticator = null;
-        this.user = user;
-        this.authenticator = authenticator;
         console.log('this.authenticator', this.authenticator);
     }
-    HomeCmp.prototype.subitForm = function () {
+    LoginCmp.prototype.subitForm = function () {
         var _this = this;
         this.hideError = false;
         try {
@@ -52,24 +48,22 @@ var HomeCmp = (function () {
                 _this._router.navigate(['About']);
             });
         }
-        finally {
+        catch (e) {
+            console.log(e);
         }
     };
-    HomeCmp.prototype.catch = function (e) {
-        console.log(e);
-    };
-    HomeCmp = __decorate([
+    LoginCmp = __decorate([
         core_1.Component({
-            selector: 'home',
-            templateUrl: './components/home/home.html',
-            styleUrls: ['./components/home/home.css'],
+            selector: 'login',
+            templateUrl: './components/login/login.html',
+            styleUrls: ['./components/login/login.css'],
             encapsulation: core_1.ViewEncapsulation.None,
             providers: [Request_1.AutoAuthenticator, user_1.default],
             directives: [MdlUpgradeDirective]
         }), 
         __metadata('design:paramtypes', [user_1.default, router_1.Router, Request_1.AutoAuthenticator])
-    ], HomeCmp);
-    return HomeCmp;
+    ], LoginCmp);
+    return LoginCmp;
 })();
-exports.HomeCmp = HomeCmp;
-//# sourceMappingURL=home.js.map
+exports.LoginCmp = LoginCmp;
+//# sourceMappingURL=login.js.map
