@@ -1,5 +1,6 @@
 # Introduction
 
+Note: Actual reference is from (https://github.com/mgechev/angular2-seed), Thanks to @mgechev 
 
 A seed project for Angular 2 apps.
 
