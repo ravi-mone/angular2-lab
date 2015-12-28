@@ -45,9 +45,7 @@ var AutoAuthenticator = (function () {
     };
     AutoAuthenticator.prototype.getRequestHeaders = function () {
         return (new http_1.Headers({
-            'authorization': 'Bearer ' + this.user._user.access_token,
-            'accept': 'application/json',
-            'content-type': 'application/json'
+            'accept': 'application/json'
         }));
     };
     AutoAuthenticator.prototype.request = function (type, url, queryString) {

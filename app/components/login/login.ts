@@ -22,7 +22,6 @@ class MdlUpgradeDirective {
 @Component({
   selector: 'login',
   templateUrl: './components/login/login.html',
-  styleUrls: ['./components/login/login.css'],
   encapsulation:ViewEncapsulation.None,
   providers: [AutoAuthenticator, User],
   directives: [MdlUpgradeDirective]
@@ -39,7 +38,7 @@ export class LoginCmp {
   subitForm() {
     this.hideError = false;
     try {
-      this.authenticator.login('POST', '/oauth/token',
+      this.authenticator.login('GET', '568142e2120000960993a242',
         {username: this.username, password: this.password}
       ).subscribe(res => {
         console.log(this.user)

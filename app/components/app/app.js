@@ -17,23 +17,23 @@ var AppCmp = (function () {
         this.userSignedIn = false;
     }
     AppCmp.prototype.ngAfterContentChecked = function () {
-        console.log('calling multiple times', this.userSignedIn);
+        console.log('calling multiple times, This is incorrect :(', this.userSignedIn);
         if (JSON.parse(localStorage.getItem('pp.user'))) {
             this.userSignedIn = true;
         }
     };
     AppCmp = __decorate([
         core_1.Component({
-            selector: 'login',
+            selector: 'app',
             viewProviders: [name_list_1.NameList],
             templateUrl: './components/app/app.html',
             styleUrls: ['./components/app/app.css'],
-            encapsulation: core_1.ViewEncapsulation.Emulated,
+            encapsulation: core_1.ViewEncapsulation.None,
             directives: [router_1.ROUTER_DIRECTIVES]
         }),
         router_1.RouteConfig([
-            { path: '/login', component: login_1.LoginCmp, name: 'login', useAsDefault: true },
-            { path: '/about', component: about_1.AboutCmp, name: 'About' }
+            { path: '/login', component: login_1.LoginCmp, as: 'Login', useAsDefault: true },
+            { path: '/about', component: about_1.AboutCmp, as: 'About' }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppCmp);

@@ -12,7 +12,7 @@ bootstrap(AppCmp, [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,User,AutoAuthenticator,
   provide('APIEndpoint', {
-    useValue: 'http://Some_URL_HERE'
+    useValue: 'http://www.mocky.io/v2/'
   }),
   provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]).then((appRef: ComponentRef) => {

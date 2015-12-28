@@ -26,7 +26,7 @@ var AboutCmp = (function () {
         this.authenticator = null;
         this.columns = [];
         try {
-            authenticator.request('GET', '/api/v4.1/order', { retailerId: user._user.Retailer_id, count: 25 }).subscribe(function (res) {
+            authenticator.request('GET', '5681453b1200006c0a93a24b', { retailerId: user._user.Retailer_id, count: 25 }).subscribe(function (res) {
                 var data = res.json().results;
                 _this.columns =
                     [

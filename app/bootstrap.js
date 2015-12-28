@@ -10,7 +10,7 @@ browser_1.bootstrap(app_1.AppCmp, [
     http_1.HTTP_PROVIDERS,
     router_1.ROUTER_PROVIDERS, user_1.default, Request_1.AutoAuthenticator,
     core_1.provide('APIEndpoint', {
-        useValue: 'http://Some_URL_HERE'
+        useValue: 'http://www.mocky.io/v2/'
     }),
     core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })
 ]).then(function (appRef) {

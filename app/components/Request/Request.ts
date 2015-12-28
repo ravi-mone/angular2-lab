@@ -45,9 +45,8 @@ export class AutoAuthenticator {
 
   getRequestHeaders(){
     return (new Headers({
-      'authorization' : 'Bearer '+this.user._user.access_token,
-      'accept'        : 'application/json',
-      'content-type'  : 'application/json'
+      /*'authorization' : 'Bearer '+this.user._user.access_token,*/
+      'accept'        : 'application/json'
 
     }));
   }

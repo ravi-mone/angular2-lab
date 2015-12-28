@@ -42,7 +42,7 @@ var LoginCmp = (function () {
         var _this = this;
         this.hideError = false;
         try {
-            this.authenticator.login('POST', '/oauth/token', { username: this.username, password: this.password }).subscribe(function (res) {
+            this.authenticator.login('GET', '568142e2120000960993a242', { username: this.username, password: this.password }).subscribe(function (res) {
                 console.log(_this.user);
                 _this.user.setUser(res.json());
                 _this._router.navigate(['About']);
@@ -56,7 +56,6 @@ var LoginCmp = (function () {
         core_1.Component({
             selector: 'login',
             templateUrl: './components/login/login.html',
-            styleUrls: ['./components/login/login.css'],
             encapsulation: core_1.ViewEncapsulation.None,
             providers: [Request_1.AutoAuthenticator, user_1.default],
             directives: [MdlUpgradeDirective]

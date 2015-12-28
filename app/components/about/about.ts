@@ -38,7 +38,7 @@ export class AboutCmp implements OnInit {
     try {
       //var injector = Injector.resolveAndCreate([]);
      // let user = injector.get(User);
-      authenticator.request('GET', '/api/v4.1/order',
+      authenticator.request('GET', '5681453b1200006c0a93a24b',
         {retailerId: user._user.Retailer_id, count: 25}
       ).subscribe(res => {
         let data = res.json().results;
