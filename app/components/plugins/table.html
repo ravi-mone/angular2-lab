@@ -1,0 +1,34 @@
+<h2 class="h2">{{header}}</h2>
+<ng-content></ng-content>
+<div>
+  <div class="dropdown pull-righ">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      {{defaultSort}}
+      <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li *ngFor="#column of columns;"><a href="javascript:void(0)" (click)="sortBy(data[0].data, column)">{{column.displayName}}</a></li>
+
+    </ul>
+  </div>
+</div>
+
+<table class="mdl-data-table mdl-js-data-table full-width mdl-shadow--2dp" >
+  <thead >
+  <tr>
+    <th *ngFor="#column of columns;">{{column.displayName || column}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="#row of data[0].data  | customOrderBy: ['-createdOn'] ">
+    <td *ngFor="#column of columns; #i = index;">
+      <a *ngIf="column.aggregate == 'link' "  (click)="navigateTo(column.name, row[column.name])" >
+        {{row[column.name] }}
+      </a>
+      <span *ngIf="column.aggregate == 'concat' " >
+        <span *ngFor="#field of column.fields;">{{row[field] }} </span>
+      </span>
+      {{(row[column.name] | aggregateFn : column.aggregate) || row[column] }}
+    </td>
+  </tr>
+  </tbody>
+</table>

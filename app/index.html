@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" class="mdl-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= APP_TITLE %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://picketstudio.github.io/fluent-retail-admin-console/webroot/css/sortable/sortable-theme-minimal.css" />
+  <link rel="stylesheet" href="https://picketstudio.github.io/fluent-retail-admin-console/webroot/css/style.min.css" />
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body class="no-sidebar">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+  <header id="site-header" class="mdl-layout__header">
+
+    <img src="images/FLUENT-Logo-RGB-White.png" alt="Fluent Retail logotype">
+
+  </header>
+  <div id="content" class="mdl-layout__content">
+    <div class="container">
+      <login></login>
+    </div>
+    </div>
+</div>
+
+
+<!-- shims:js -->
+<!-- endinject -->
+
+<script>System.config(<%= JSON.stringify(SYSTEM_CONFIG) %>)</script>
+
+<!-- libs:js -->
+<!-- endinject -->
+
+<script>
+  System.import('bootstrap')
+    .catch(function (e) {
+      console.error(e,
+        'Report this error at https://github.com/mgechev/angular2-seed/issues');
+    });
+</script>
+
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>

@@ -1,0 +1,32 @@
+    <h1>ngModel, Needs FORM_DIRECTIVES</h1>
+    <input type="text" [(ng-model)]="searchQuery">
+    {{searchQuery}}
+
+    <hr />
+
+<section class="new-link">
+    <form (submit)="addArticle(newtitle, newlink)" >
+    <div class="control-group">
+        <div><label >Title:</label></div>
+        <div><input name="title" #newtitle></div>
+    </div>
+    <div class="control-group">
+        <div><label >Link:</label></div>
+        <div><input name="link" #newlink></div>
+    </div>
+
+    <button type="submit" >Submit Link</button>
+    </form>
+</section>
+<hr  />
+<section>
+    <!--*ng-for="#article of articles | limitTo:2" -->
+    <div *ng-if="articles.length" >
+        <ul >
+            <li><b>Title</b> |  <b>Link</b></li>
+        </ul>
+        <ul *ng-for="#article of articles;  #i = index">
+            <li> {{i + 1}} : {{article.title}} | {{article.link}} <button (click)="deleteArticle(i)">X</button></li>
+        </ul>
+    </div>
+</section>

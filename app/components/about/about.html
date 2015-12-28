@@ -1,0 +1,24 @@
+<i class="icon-large icon-user"></i>
+
+<form (submit)="addName(newname)">
+  <input #newname>
+  <button type="submit">Add</button>
+  {{loadTable}}
+  <div *ngIf="loadTable">
+    <!-- title="Orders" meant for display purposes not for passing data to a component, To pass the data to a component,
+     you need to use the "normal" input-binding syntax
+     TODO, need to implement below properties
+    columns={columns}
+    rows={rows}
+    rowFilter={rowFilter}
+    rowTransformer={rowTransformer}
+    pagination={pagination}
+    nextPage={nextPage}
+    prevPage={prevPage}
+    pageSize={pageSize}-->
+    <tablePlugin title="Orders" [data]="reports"   >
+      This is Table Plugin
+    </tablePlugin>
+  </div>
+</form>
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
