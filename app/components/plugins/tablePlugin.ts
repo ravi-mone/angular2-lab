@@ -1,31 +1,32 @@
-import {Component, OnInit, Injector, Input, Pipe} from 'angular2/core';
-import {Router, RouteParams, ComponentInstruction} from 'angular2/router';
-import {OnActivate} from "angular2/router";
-
-import {aggregateFnPipe} from "../pipes/aggregateFn";
-import {CustomOrderByPipe} from "../pipes/CustomOrderByPipe";
-
-import {appInjector} from '../helpers/app-injector';
+import {Component, OnInit, Injector, Input, Pipe, Attribute}  from 'angular2/core';
+import {Router, RouteParams, ComponentInstruction}            from 'angular2/router';
+import {OnActivate}                                           from "angular2/router";
+import {aggregateFnPipe}                                      from "../pipes/aggregateFn";
+import {CustomOrderByPipe}                                    from "../pipes/CustomOrderByPipe";
+import {appInjector}                                          from '../../helpers/app-injector';
 
 //var _ = require("lodash");
 
 @Component({
   selector: 'tablePlugin',
   templateUrl :'./components/plugins/table.html',
+  styleUrls : ['/assets/style.min.css'],
   pipes:[aggregateFnPipe, CustomOrderByPipe]
 })
 export class TablePlugIn implements OnInit{
-  @Input('title') header: string;
+  //@Input('title') header: string;
   @Input() data: any;
   @Input() pagination :string;
   columns=[];
   defaultSort='-Select-';
+  title=null;
   ngOnInit() {
     this.columns = this.data[0].columns;
 
   }
-  constructor(private _router: Router){
-
+  constructor(private _router: Router, @Attribute('title') title){
+    this.header = title;
+console.log('title', title);
   }
   operator=null;
   sortBy(data, column){

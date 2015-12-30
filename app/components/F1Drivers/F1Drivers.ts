@@ -1,12 +1,10 @@
-import {Component, View, OnInit} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
-import {Http} from 'angular2/http';
-import {RouterLink} from 'angular2/router';
-import {Points} from './points/points';
-import {Nationality} from './nationality/nationality';
-import {driverHeader} from './Header/driverheader';
-
-import {NamesList} from '../../services/models/NameList';
+import {Component, View, OnInit}      from 'angular2/core';
+import {Http}                         from 'angular2/http';
+import {RouterLink}                   from 'angular2/router';
+import {Points}                       from './points/points';
+import {Nationality}                  from './nationality/nationality';
+import {driverHeader}                 from './Header/driverheader';
+import {NamesList}                    from '../../services/models/NameList';
 //import UserRepo from '../../services/repositories/user_repo';
 
 
@@ -16,12 +14,9 @@ import {NamesList} from '../../services/models/NameList';
    * bindings are available to a component and its children,
    * viewBindings are only available to a particular view,
    * */
-  viewBindings: [NamesList]
-})
-
-@View({
+  providers: [NamesList],
   templateUrl: './components/F1Drivers/f1Drivers.html',
-  directives: [Points, Nationality, driverHeader, RouterLink, CORE_DIRECTIVES]
+  directives: [Points, Nationality, driverHeader, RouterLink]
   //viewBindings: [httpInjectables]
 })
 export class F1Drivers implements OnInit {

@@ -7,9 +7,7 @@ import {Points} from '../points/points'
 import {NamesList} from '../../../services/models/NameList';
 @Component({
     selector: 'Details',
-    viewBindings:[NamesList]
-})
-@View({
+    providers:[NamesList],
     templateUrl: './components/F1Drivers/Details/details.html?v=<%= VERSION %>',
     directives: [RouterLink, Nationality, Points, CORE_DIRECTIVES]
 })

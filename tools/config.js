@@ -39,7 +39,8 @@ exports.NPM_DEPENDENCIES = [
     { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true, dest: exports.CSS_DEST },
 ];
 exports.APP_ASSETS = [
-    { src: exports.ASSETS_SRC + "/main.css", inject: true, dest: exports.CSS_DEST }
+    { src: exports.ASSETS_SRC + "/main.css", inject: true, dest: exports.CSS_DEST },
+    { src: exports.ASSETS_SRC + "/style.min.css", inject: true, dest: exports.CSS_DEST }
 ];
 exports.NPM_DEPENDENCIES
     .filter(function (d) { return !/\*/.test(d.src); })

@@ -1,5 +1,5 @@
-var User = (function () {
-    function User() {
+var USER_PROVIDER = (function () {
+    function USER_PROVIDER() {
         this.SIGNED_IN_KEY = 'pp.signed-in';
         this.USER_KEY = 'pp.user';
         this._status = null;
@@ -7,7 +7,7 @@ var User = (function () {
         this._login_error = false;
         this._user = localStorage.getItem(this.USER_KEY) ? JSON.parse(localStorage.getItem(this.USER_KEY)) : {};
     }
-    User.prototype.setUser = function (user) {
+    USER_PROVIDER.prototype.setUser = function (user) {
         this._user = user;
         this._signed_in = !!user;
         localStorage.setItem(this.SIGNED_IN_KEY, this._signed_in);
@@ -19,13 +19,13 @@ var User = (function () {
         }
         this._status = null;
     };
-    User.prototype.logout = function () {
+    USER_PROVIDER.prototype.logout = function () {
         this._username = null;
         this._password = null;
         this.setUser(null);
     };
-    return User;
+    return USER_PROVIDER;
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = User;
+exports.default = USER_PROVIDER;
 //# sourceMappingURL=user.js.map

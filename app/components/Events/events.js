@@ -29,9 +29,7 @@ var EventsDemo = (function () {
     EventsDemo = __decorate([
         core_1.Component({
             selector: 'events-demo',
-            bindings: [NameList_1.NamesList]
-        }),
-        core_1.View({
+            providers: [NameList_1.NamesList],
             templateUrl: './components/Events/events.html',
             directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
         }), 

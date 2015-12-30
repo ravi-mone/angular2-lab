@@ -8,8 +8,6 @@ import {NamesList} from '../../../services/models/NameList';
 
 @Component({
     selector: 'driverHeader',
-})
-@View({
     templateUrl: './components/F1Drivers/Header/driverheader.html?v=<%= VERSION %>'
 })
 export class driverHeader implements onInit{

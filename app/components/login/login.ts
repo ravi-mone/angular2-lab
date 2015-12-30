@@ -1,12 +1,8 @@
-import {Component,ViewEncapsulation, Injector, Inject} from 'angular2/core';
-import {Http} from 'angular2/http';
-import {BaseRequestOptions, Request, RequestMethod} from 'angular2/http';
-import {Router}              from 'angular2/router';
+import {Component, ViewEncapsulation, Input, Directive, ElementRef}     from 'angular2/core';
+import {Router}                                                         from 'angular2/router';
+import {HTTP_REQUEST_PROVIDER}                                                        from '../Request/Request';
+import User                                                             from '../../services/models/user';
 
-import {AutoAuthenticator} from '../Request/Request'
-import User from '../../services/models/user'
-
-import {Input, Directive, ElementRef} from 'angular2/core';
 @Directive({
   selector: '[mdlUpgrade]'
 })
@@ -23,30 +19,30 @@ class MdlUpgradeDirective {
   selector: 'login',
   templateUrl: './components/login/login.html',
   encapsulation:ViewEncapsulation.None,
-  providers: [AutoAuthenticator, User],
+  providers: [HTTP_REQUEST_PROVIDER, User],
   directives: [MdlUpgradeDirective]
 })
 export class LoginCmp {
   username= 'BNT2010';
   password = 'bnt2010';
-  hideError= true;
-  constructor(public user:User, private _router: Router, public authenticator : AutoAuthenticator){
+  showError= false;
 
-    console.log('this.authenticator', this.authenticator)
+  constructor(public user:User, private _router: Router, public authenticator : HTTP_REQUEST_PROVIDER){
+
   }
 
+  //This function is called when the user clicks on the submit button
   subitForm() {
-    this.hideError = false;
     try {
       this.authenticator.login('GET', '568142e2120000960993a242',
-        {username: this.username, password: this.password}
-      ).subscribe(res => {
-        console.log(this.user)
-        //URL should have included '?password=123'
-        this.user.setUser(res.json());
-        this._router.navigate(['About']  /*['HeroDetail', { id: hero.id }]*/);
+        {username: this.username, password: this.password})
+        .then(() => {
 
-      });
+          this._router.navigate(['/About']);
+        })
+        .catch((e) => {
+          this.showError = true;
+        });
     }catch(e){
       console.log(e)
     }

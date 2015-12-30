@@ -8,7 +8,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var common_1 = require('angular2/common');
 var http_1 = require('angular2/http');
 var router_1 = require('angular2/router');
 var points_1 = require('./points/points');
@@ -52,11 +51,9 @@ var F1Drivers = (function () {
     F1Drivers = __decorate([
         core_1.Component({
             selector: 'f1Drivers',
-            viewBindings: [NameList_1.NamesList]
-        }),
-        core_1.View({
+            providers: [NameList_1.NamesList],
             templateUrl: './components/F1Drivers/f1Drivers.html',
-            directives: [points_1.Points, nationality_1.Nationality, driverheader_1.driverHeader, router_1.RouterLink, common_1.CORE_DIRECTIVES]
+            directives: [points_1.Points, nationality_1.Nationality, driverheader_1.driverHeader, router_1.RouterLink]
         }), 
         __metadata('design:paramtypes', [NameList_1.NamesList, http_1.Http])
     ], F1Drivers);

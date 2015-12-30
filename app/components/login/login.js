@@ -11,20 +11,19 @@ var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var Request_1 = require('../Request/Request');
 var user_1 = require('../../services/models/user');
-var core_2 = require('angular2/core');
 var MdlUpgradeDirective = (function () {
     function MdlUpgradeDirective(el) {
         componentHandler.upgradeElement(el.nativeElement);
     }
     __decorate([
-        core_2.Input(), 
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], MdlUpgradeDirective.prototype, "mglUpgrade", void 0);
     MdlUpgradeDirective = __decorate([
-        core_2.Directive({
+        core_1.Directive({
             selector: '[mdlUpgrade]'
         }), 
-        __metadata('design:paramtypes', [core_2.ElementRef])
+        __metadata('design:paramtypes', [core_1.ElementRef])
     ], MdlUpgradeDirective);
     return MdlUpgradeDirective;
 })();
@@ -35,17 +34,17 @@ var LoginCmp = (function () {
         this.authenticator = authenticator;
         this.username = 'BNT2010';
         this.password = 'bnt2010';
-        this.hideError = true;
-        console.log('this.authenticator', this.authenticator);
+        this.showError = false;
     }
     LoginCmp.prototype.subitForm = function () {
         var _this = this;
-        this.hideError = false;
         try {
-            this.authenticator.login('GET', '568142e2120000960993a242', { username: this.username, password: this.password }).subscribe(function (res) {
-                console.log(_this.user);
-                _this.user.setUser(res.json());
-                _this._router.navigate(['About']);
+            this.authenticator.login('GET', '568142e2120000960993a242', { username: this.username, password: this.password })
+                .then(function () {
+                _this._router.navigate(['/About']);
+            })
+                .catch(function (e) {
+                _this.showError = true;
             });
         }
         catch (e) {
@@ -57,10 +56,10 @@ var LoginCmp = (function () {
             selector: 'login',
             templateUrl: './components/login/login.html',
             encapsulation: core_1.ViewEncapsulation.None,
-            providers: [Request_1.AutoAuthenticator, user_1.default],
+            providers: [Request_1.HTTP_REQUEST_PROVIDER, user_1.default],
             directives: [MdlUpgradeDirective]
         }), 
-        __metadata('design:paramtypes', [user_1.default, router_1.Router, Request_1.AutoAuthenticator])
+        __metadata('design:paramtypes', [user_1.default, router_1.Router, Request_1.HTTP_REQUEST_PROVIDER])
     ], LoginCmp);
     return LoginCmp;
 })();

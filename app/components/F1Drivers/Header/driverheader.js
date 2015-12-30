@@ -35,8 +35,6 @@ var driverHeader = (function () {
     driverHeader = __decorate([
         core_1.Component({
             selector: 'driverHeader',
-        }),
-        core_1.View({
             templateUrl: './components/F1Drivers/Header/driverheader.html?v=<%= VERSION %>'
         }), 
         __metadata('design:paramtypes', [NameList_1.NamesList])

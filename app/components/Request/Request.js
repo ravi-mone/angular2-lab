@@ -13,14 +13,19 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var core_1 = require('angular2/core');
 var http_1 = require('angular2/http');
 var user_1 = require('../../services/models/user');
-var AutoAuthenticator = (function () {
-    function AutoAuthenticator(http, api, user) {
+var auth_1 = require('../../services/auth/auth');
+var router_1 = require('angular2/router');
+var HTTP_REQUEST_PROVIDER = (function () {
+    function HTTP_REQUEST_PROVIDER(http, api, user, _router, auth) {
         this.http = http;
         this.user = user;
+        this._router = _router;
+        this.auth = auth;
         this.api = null;
+        this.userSignedIn = false;
         this.api = api;
     }
-    AutoAuthenticator.prototype.queryBuilder = function (queryObject) {
+    HTTP_REQUEST_PROVIDER.prototype.queryBuilder = function (queryObject) {
         var str = '';
         for (key in queryObject) {
             str += key + '=' + queryObject[key] + '&';
@@ -28,27 +33,26 @@ var AutoAuthenticator = (function () {
         str = str.substr(0, str.length - 1);
         return str;
     };
-    AutoAuthenticator.prototype.returnMethodType = function (type) {
+    HTTP_REQUEST_PROVIDER.prototype.returnMethodType = function (type) {
         var requestTypes = {
             'GET': http_1.RequestMethod.Get,
             'POST': http_1.RequestMethod.Post
         };
         return requestTypes[type];
     };
-    AutoAuthenticator.prototype.login = function (type, url, queryString) {
+    HTTP_REQUEST_PROVIDER.prototype.login = function (type, url, queryString) {
         var qString = "scope=retailer&client_id=ppPartner&client_secret=Nhgij-I87J5N0g4nso8H5J-uijd4sNbF4gha&grant_type=password&" + this.queryBuilder(queryString);
-        return this.http.request(new http_1.Request({
-            method: this.returnMethodType(type),
-            url: "" + this.api + url,
-            search: qString
-        }));
+        return this.auth.login(qString, url);
     };
-    AutoAuthenticator.prototype.getRequestHeaders = function () {
+    HTTP_REQUEST_PROVIDER.prototype.getRequestHeaders = function () {
         return (new http_1.Headers({
             'accept': 'application/json'
         }));
     };
-    AutoAuthenticator.prototype.request = function (type, url, queryString) {
+    HTTP_REQUEST_PROVIDER.prototype.isUserLoggedIn = function () {
+        return this.userSignedIn;
+    };
+    HTTP_REQUEST_PROVIDER.prototype.request = function (type, url, queryString) {
         return this.http.request(new http_1.Request({
             method: this.returnMethodType(type),
             url: "" + this.api + url,
@@ -56,12 +60,12 @@ var AutoAuthenticator = (function () {
             headers: this.getRequestHeaders()
         }));
     };
-    AutoAuthenticator = __decorate([
+    HTTP_REQUEST_PROVIDER = __decorate([
         core_1.Injectable(),
         __param(1, core_1.Inject('APIEndpoint')), 
-        __metadata('design:paramtypes', [http_1.Http, Object, user_1.default])
-    ], AutoAuthenticator);
-    return AutoAuthenticator;
+        __metadata('design:paramtypes', [http_1.Http, Object, user_1.default, router_1.Router, auth_1.Auth])
+    ], HTTP_REQUEST_PROVIDER);
+    return HTTP_REQUEST_PROVIDER;
 })();
-exports.AutoAuthenticator = AutoAuthenticator;
+exports.HTTP_REQUEST_PROVIDER = HTTP_REQUEST_PROVIDER;
 //# sourceMappingURL=Request.js.map

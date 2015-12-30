@@ -1,4 +1,4 @@
-export default class User {
+export default class USER_PROVIDER {
 
   SIGNED_IN_KEY = 'pp.signed-in';
   USER_KEY      = 'pp.user';

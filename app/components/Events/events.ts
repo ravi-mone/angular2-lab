@@ -4,9 +4,7 @@ import {NamesList} from '../../services/models/NameList';
 
 @Component({
   selector: 'events-demo',
-  bindings: [NamesList]
-})
-@View({
+  providers: [NamesList],
   templateUrl: './components/Events/events.html',
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })

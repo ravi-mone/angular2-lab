@@ -12,21 +12,28 @@ var router_1 = require('angular2/router');
 var Request_1 = require('../Request/Request');
 var name_list_1 = require('../../services/name_list');
 var user_1 = require('../../services/models/user');
+var auth_1 = require('../../services/auth/auth');
 var tablePlugin_1 = require('../plugins/tablePlugin');
 var directive_1 = require('../directive/directive');
+var app_injector_1 = require('../../helpers/app-injector');
 var AboutCmp = (function () {
-    function AboutCmp(list, user, authenticator) {
+    function AboutCmp(list, user, auth, _router) {
         var _this = this;
         this.list = list;
         this.user = user;
-        this.authenticator = authenticator;
+        this.auth = auth;
+        this._router = _router;
         this.loadTable = false;
         this.reports = null;
         this.columns = [];
-        this.authenticator = null;
-        this.columns = [];
+        this.auth = null;
+        this.loggedIn = false;
+        var injector = app_injector_1.appInjector();
+        var httpRequest = injector.get(Request_1.HTTP_REQUEST_PROVIDER);
+        this.auth = auth;
         try {
-            authenticator.request('GET', '5681453b1200006c0a93a24b', { retailerId: user._user.Retailer_id, count: 25 }).subscribe(function (res) {
+            httpRequest.request('GET', '5681453b1200006c0a93a24b', { retailerId: user._user.Retailer_id, count: 25 })
+                .subscribe(function (res) {
                 var data = res.json().results;
                 _this.columns =
                     [
@@ -41,26 +48,33 @@ var AboutCmp = (function () {
                     ];
                 _this.reports = [{ data: data, columns: _this.columns }];
                 _this.loadTable = true;
-            });
+            }, function (err) { return console.log('Error', err); });
         }
         catch (e) {
             console.log(e);
         }
     }
-    __decorate([
-        router_1.CanActivate(function (next, prev) {
-            console.log(next, prev);
-        }), 
-        __metadata('design:type', Object)
-    ], AboutCmp.prototype, "columns", void 0);
+    AboutCmp.prototype.routerOnActivate = function () {
+        var _this = this;
+        this.auth.check()
+            .then(function (result) {
+            _this.loggedIn = result._signed_in;
+            if (!_this.loggedIn) {
+                _this._router.navigate(['Login']);
+            }
+        })
+            .catch(function () {
+            _this.loggedIn = false;
+        });
+    };
     AboutCmp = __decorate([
         core_1.Component({
             selector: 'about',
             templateUrl: './components/about/about.html',
             directives: [tablePlugin_1.TablePlugIn],
-            providers: [user_1.default, Request_1.AutoAuthenticator, directive_1.ChatBlinkDirective],
+            providers: [user_1.default, directive_1.ChatBlinkDirective, auth_1.Auth],
         }), 
-        __metadata('design:paramtypes', [name_list_1.NameList, user_1.default, Request_1.AutoAuthenticator])
+        __metadata('design:paramtypes', [name_list_1.NameList, user_1.default, auth_1.Auth, router_1.Router])
     ], AboutCmp);
     return AboutCmp;
 })();

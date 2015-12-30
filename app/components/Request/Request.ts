@@ -1,13 +1,18 @@
 /**
  * Created by techjini on 23/12/15.
  */
-import {Injectable, Inject} from 'angular2/core';
-import {Http, Request, RequestMethod, Headers} from 'angular2/http';
-import User from '../../services/models/user';
+import {Injectable, provide, Inject, Injector}  from 'angular2/core';
+import {Http, Request, RequestMethod, Headers}  from 'angular2/http';
+import User                                     from '../../services/models/user';
+import {Auth}                                     from '../../services/auth/auth';
+import {Router}                                 from 'angular2/router';
 
 @Injectable()
-export class AutoAuthenticator {
+export class HTTP_REQUEST_PROVIDER {
   api=null;
+  userSignedIn=false;
+
+
   public queryBuilder(queryObject:any) {
     var str = '';
 
@@ -27,7 +32,7 @@ export class AutoAuthenticator {
     return requestTypes[type];
   }
 
-  constructor(public http:Http, @Inject('APIEndpoint') api, public user:User) {
+  constructor(public http:Http, @Inject('APIEndpoint') api, public user:User, private _router: Router, public auth:Auth) {
    this.api = api;
   }
 
@@ -35,12 +40,9 @@ export class AutoAuthenticator {
   login(type:string, url:string, queryString:any) {
 
     var qString = `scope=retailer&client_id=ppPartner&client_secret=Nhgij-I87J5N0g4nso8H5J-uijd4sNbF4gha&grant_type=password&${this.queryBuilder(queryString)}`;
+    return this.auth.login(qString, url);
 
-    return this.http.request(new Request({
-      method: this.returnMethodType(type),
-      url: `${this.api}${url}`,
-      search: qString
-    }));
+
   }
 
   getRequestHeaders(){
@@ -49,6 +51,10 @@ export class AutoAuthenticator {
       'accept'        : 'application/json'
 
     }));
+  }
+
+  isUserLoggedIn(){
+    return this.userSignedIn;
   }
 
   request(type:string, url:string, queryString:any) {

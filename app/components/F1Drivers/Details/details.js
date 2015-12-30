@@ -28,9 +28,7 @@ var Details = (function () {
     Details = __decorate([
         core_1.Component({
             selector: 'Details',
-            viewBindings: [NameList_1.NamesList]
-        }),
-        core_1.View({
+            providers: [NameList_1.NamesList],
             templateUrl: './components/F1Drivers/Details/details.html?v=<%= VERSION %>',
             directives: [router_1.RouterLink, nationality_1.Nationality, points_1.Points, common_1.CORE_DIRECTIVES]
         }),
