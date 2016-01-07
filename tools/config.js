@@ -1,11 +1,16 @@
 var fs_1 = require('fs');
 var yargs_1 = require('yargs');
+var path_1 = require('path');
+exports.PROJECT_ROOT = path_1.normalize(path_1.join(__dirname, '..'));
 exports.ENV = yargs_1.argv['env'] || 'dev';
 exports.DEBUG = yargs_1.argv['debug'] || false;
 exports.PORT = yargs_1.argv['port'] || 5555;
-exports.LIVE_RELOAD_PORT = yargs_1.argv['reload-port'] || 4005;
+exports.LIVE_RELOAD_PORT = yargs_1.argv['reload-port'] || 4002;
 exports.DOCS_PORT = yargs_1.argv['docs-port'] || 4003;
 exports.APP_BASE = yargs_1.argv['base'] || '/';
+exports.ENABLE_HOT_LOADING = !!yargs_1.argv['hot-loader'];
+exports.HOT_LOADER_PORT = 5578;
+exports.BOOTSTRAP_MODULE = exports.ENABLE_HOT_LOADING ? 'hot_loader_bootstrap' : 'bootstrap';
 exports.APP_TITLE = 'My Angular2 App';
 exports.APP_SRC = 'app';
 exports.ASSETS_SRC = exports.APP_SRC + "/assets";
@@ -35,12 +40,12 @@ exports.NPM_DEPENDENCIES = [
     { src: 'angular2/bundles/http.min.js', inject: 'libs', dest: exports.LIB_DEST },
     { src: 'jquery/dist/jquery.min.js', inject: 'libs', dest: exports.LIB_DEST },
     { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs', dest: exports.LIB_DEST },
-    { src: 'lodash/array/*', inject: 'libs', dest: exports.LIB_DEST },
     { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true, dest: exports.CSS_DEST },
+    { src: 'ng2-material/dist/ng2-material.css', inject: true, dest: exports.CSS_DEST },
+    { src: 'ng2-material/dist/font.css', inject: true, dest: exports.CSS_DEST }
 ];
 exports.APP_ASSETS = [
-    { src: exports.ASSETS_SRC + "/main.css", inject: true, dest: exports.CSS_DEST },
-    { src: exports.ASSETS_SRC + "/style.min.css", inject: true, dest: exports.CSS_DEST }
+    { src: exports.ASSETS_SRC + "/main.css", inject: true, dest: exports.CSS_DEST }
 ];
 exports.NPM_DEPENDENCIES
     .filter(function (d) { return !/\*/.test(d.src); })
@@ -50,6 +55,7 @@ var SYSTEM_CONFIG_DEV = {
     defaultJSExtensions: true,
     paths: {
         'bootstrap': exports.APP_ROOT + "bootstrap",
+        'hot_loader_bootstrap': exports.APP_ROOT + "hot_loader_bootstrap",
         '*': exports.APP_BASE + "node_modules/*"
     }
 };

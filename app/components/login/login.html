@@ -1,36 +1,25 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Sign in</span>
+      <span class="md-subhead">Credentials : demo123/password</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content layout="row" layout-align="center">
+    <md-input-container>
+      <label for="label">UserName</label>
+      <input md-input type="text" id="label" [(ngModel)]="username" (focus)="showError = false;" >
+    </md-input-container>
+    <md-input-container>
+      <label for="content">Password</label>
+      <input md-input type="text" id="content" [(ngModel)]="password">
+    </md-input-container>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="center">
+    <button md-raised-button class="md-raised md-primary"  [disabled]="!username || !password"  (click)="subitForm()">Submit</button>
+  </md-card-actions>
+</md-card>
+<div class="mdl-cell mdl-cell--12-col status-red center" [hidden]="!showError">
+  Sorry, the username and/or password was incorrect
+</div>
 
-
-
-    <div class="mdl-grid">
-
-      <div class="mdl-cell mdl-cell--12-col">
-
-        <h1 class="center">Sign in</h1>
-
-        <div class="full-width mdl-card mdl-shadow--2dp">
-          <div class="mdl-card__supporting-text">
-
-            <form action="#" id="login-form">
-              <div mdlUpgrade class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input with-icon" type="text" id="search-input" [(ngModel)]="username" />
-                <label class="mdl-textfield__label" for="search-input">Username</label>
-              </div>
-              <div mdlUpgrade class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input with-icon" type="password" id="search-input" [(ngModel)]="password"  />
-                <label class="mdl-textfield__label" for="search-input">Password</label>
-              </div>
-              <p>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" (click)="subitForm()">Submit</button></p>
-              <p><a href="#">Forgot your password?</a></p>
-            </form>
-          </div>
-
-        </div>
-
-      </div>
-      hideError = {{hideError}}
-      <div class="mdl-cell mdl-cell--12-col status-red center" [hidden]="hideError">
-        Sorry, the username and/or password was incorrect
-      </div>
-
-    </div>

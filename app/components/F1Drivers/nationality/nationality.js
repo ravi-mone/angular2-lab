@@ -11,20 +11,11 @@ var core_1 = require('angular2/core');
 var Nationality = (function () {
     function Nationality() {
     }
-    Object.defineProperty(Nationality.prototype, "text", {
-        set: function (value) {
-            this.nationality = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Nationality = __decorate([
         core_1.Component({
             selector: 'nationality',
-            properties: ['text: cty'],
-        }),
-        core_1.View({
-            templateUrl: './components/F1Drivers/nationality/nationality.html?v=<%= VERSION %>'
+            inputs: ['national:cty'],
+            templateUrl: './components/F1Drivers/nationality/nationality.html'
         }), 
         __metadata('design:paramtypes', [])
     ], Nationality);

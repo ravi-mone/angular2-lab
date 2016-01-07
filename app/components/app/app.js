@@ -12,9 +12,7 @@ var router_1 = require('angular2/router');
 var login_1 = require('../login/login');
 var about_1 = require('../about/about');
 var name_list_1 = require('../../services/name_list');
-var F1Drivers_1 = require('../F1Drivers/F1Drivers');
 var details_1 = require('../F1Drivers/Details/details');
-var events_1 = require('../Events/events');
 var AppCmp = (function () {
     function AppCmp() {
     }
@@ -30,9 +28,7 @@ var AppCmp = (function () {
         router_1.RouteConfig([
             { path: '/login', component: login_1.LoginCmp, as: 'Login', useAsDefault: true },
             { path: '/about', component: about_1.AboutCmp, as: 'About' },
-            { path: '/drivers', component: F1Drivers_1.F1Drivers, as: 'drivers' },
-            { path: '/details/:name', component: details_1.Details, as: 'details' },
-            { path: '/events', component: events_1.EventsDemo, as: 'events' }
+            { path: '/details/:name', component: details_1.Details, as: 'Details' }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppCmp);

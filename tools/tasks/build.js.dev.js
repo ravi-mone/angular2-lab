@@ -10,7 +10,6 @@ module.exports = function buildJSDev(gulp, plugins) {
         ];
         var result = gulp.src(src)
             .pipe(plugins.plumber())
-            .pipe(plugins.inlineNg2Template({ base: config_1.APP_SRC }))
             .pipe(plugins.sourcemaps.init())
             .pipe(plugins.typescript(tsProject));
         return result.js

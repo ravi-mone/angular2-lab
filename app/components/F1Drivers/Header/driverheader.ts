@@ -8,7 +8,7 @@ import {NamesList} from '../../../services/models/NameList';
 
 @Component({
     selector: 'driverHeader',
-    templateUrl: './components/F1Drivers/Header/driverheader.html?v=<%= VERSION %>'
+    templateUrl: './components/F1Drivers/Header/driverheader.html'
 })
 export class driverHeader implements onInit{
 
@@ -16,11 +16,11 @@ export class driverHeader implements onInit{
     isreverse:boolean = false;
 
     constructor(public list: NamesList){
-
+      this.driverObj=this.list.get();
+      this.driverObj = this.driverObj[0]['DriverStandings'];
     }
     onInit() {
-        this.driverObj=this.list.get();
-        this.driverObj = this.driverObj[0]['DriverStandings'];
+
     }
 
     sortBy(name) {

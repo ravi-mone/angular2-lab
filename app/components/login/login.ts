@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation, Input, Directive, ElementRef}     from 'angular2/core';
+import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS}                        from 'ng2-material/all';
 import {Router}                                                         from 'angular2/router';
 import {HTTP_REQUEST_PROVIDER}                                                        from '../Request/Request';
 import User                                                             from '../../services/models/user';
@@ -18,13 +19,12 @@ class MdlUpgradeDirective {
 @Component({
   selector: 'login',
   templateUrl: './components/login/login.html',
-  encapsulation:ViewEncapsulation.None,
   providers: [HTTP_REQUEST_PROVIDER, User],
-  directives: [MdlUpgradeDirective]
+  directives: [MdlUpgradeDirective, MATERIAL_DIRECTIVES]
 })
 export class LoginCmp {
-  username= 'BNT2010';
-  password = 'bnt2010';
+  username= '';
+  password = '';
   showError= false;
 
   constructor(public user:User, private _router: Router, public authenticator : HTTP_REQUEST_PROVIDER){
@@ -33,6 +33,10 @@ export class LoginCmp {
 
   //This function is called when the user clicks on the submit button
   subitForm() {
+    if(this.username != 'demo123' && this.password != 'password'){
+      this.showError = true;
+      return false;
+    }
     try {
       this.authenticator.login('GET', '568142e2120000960993a242',
         {username: this.username, password: this.password})
@@ -41,7 +45,7 @@ export class LoginCmp {
           this._router.navigate(['/About']);
         })
         .catch((e) => {
-          this.showError = true;
+
         });
     }catch(e){
       console.log(e)

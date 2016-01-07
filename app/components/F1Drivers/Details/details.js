@@ -21,15 +21,13 @@ var Details = (function () {
         this.list = list;
         this.showWhenTrue = false;
         this.id = params.get('name');
-    }
-    Details.prototype.onInit = function () {
         this.driver = this.list.getDriverSpecific(this.id - 1);
-    };
+    }
     Details = __decorate([
         core_1.Component({
             selector: 'Details',
             providers: [NameList_1.NamesList],
-            templateUrl: './components/F1Drivers/Details/details.html?v=<%= VERSION %>',
+            templateUrl: './components/F1Drivers/Details/details.html',
             directives: [router_1.RouterLink, nationality_1.Nationality, points_1.Points, common_1.CORE_DIRECTIVES]
         }),
         __param(0, core_1.Inject(NameList_1.NamesList)), 

@@ -7,22 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var core_1 = require('angular2/core');
-var core_2 = require("angular2/core");
 var Points = (function () {
-    function Points(value) {
-        this.points = value;
+    function Points() {
     }
     Points = __decorate([
         core_1.Component({
-            selector: 'Points',
-            templateUrl: './components/F1Drivers/points/points.html?v=<%= VERSION %>'
-        }),
-        __param(0, core_2.Attribute('alt')), 
-        __metadata('design:paramtypes', [Object])
+            selector: 'points',
+            inputs: ['points:cty'],
+            templateUrl: './components/F1Drivers/points/points.html'
+        }), 
+        __metadata('design:paramtypes', [])
     ], Points);
     return Points;
 })();

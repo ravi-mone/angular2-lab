@@ -1,1 +1,13 @@
 /* Sample asset */
+
+ul#display-inline-block-example,
+ul#display-inline-block-example li {
+  /* Setting a common base */
+  margin: 0;
+  padding: 0;
+}
+
+ul#display-inline-block-example li {
+  display: inline-block;
+  width: 20px;
+}

@@ -1,39 +1,27 @@
-<div class="col-md-12" >
-    <div class="row">
-        showWhenTrue : {{showWhenTrue}}
-        <div class="col-md-2">
-            <div id="main">
-
-                <nav id="secondary" class="main-nav">
-                    <div class="driver-picture">
-                        <div class="avatar">
-                            <b>{{driver.Driver.givenName}} {{driver.Driver.familyName}} </b><br />
-                            <ul class="nav nav-pills">
-                                <li class="active">
-                                    <a [router-link]="['/login']">Login</a>
-                                    <a [router-link]="['/about']">About</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="driver-status">
-                        <img src="../../assets/images/{{driver.Driver.driverId.toLowerCase()}}.jpg"   border="0" class="img-polaroid">
-                        <hr />
-
-                        Country: {{driver.Driver.nationality}}
-                        <points alt={{driver.points}} ></points>
-                        <div class="col-md-12">
-                            <nationality cty={{driver.Driver.nationality}}></nationality>
-                        </div>
-
-                        Team: {{driver.Constructors[0].name}}<br/>
-                        Birth: {{ driver.Driver.dateOfBirth }}<br/>
-                        <a href="{{driver.Driver.url}}" target="_blank">Biography</a>
-                    </div>
-                </nav>
-            </div>
-        </div>
-
-    </div>
-
-</div>
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">
+        <b>{{driver.Driver.givenName}} {{driver.Driver.familyName}} <points [cty]="driver.points" ></points></b>
+      </span>
+      <span class="md-subhead">
+        <md-card-content>
+          Country: {{driver.Driver.nationality}}
+          <div class="col-md-1">
+            <nationality [cty]="driver.Driver.nationality"></nationality>
+          </div>
+          Team: {{driver.Constructors[0].name}}<br/>
+          Birth: {{ driver.Driver.dateOfBirth }}<br/>
+          <a href="{{driver.Driver.url}}" target="_blank">Biography</a>
+        </md-card-content>
+      </span>
+    </md-card-title-text>
+    <md-card-title-media>
+      <img src="assets/images/{{driver.Driver.driverId.toLowerCase()}}.jpg"   border="0" class="img-polaroid">
+    </md-card-title-media>
+  </md-card-title>
+  <!--<md-card-actions layout="row" layout-align="end center">
+    <a [routerLink]="['/Login']"><button md-button>Login</button></a>
+    <a [routerLink]="['/About']"><button md-button>About</button></a>
+  </md-card-actions>-->
+</md-card>

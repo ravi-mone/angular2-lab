@@ -11,7 +11,7 @@
 </ul>
 <hr/>
 Show:
-<ul class=" " role="menu">
+<ul id="display-inline-block-example" role="menu">
     <li><a (click)="showSelected(5);">5</a></li>
     <li><a (click)="showSelected(10);">10</a></li>
     <li><a (click)="showSelected(20);">20</a></li>
@@ -19,39 +19,46 @@ Show:
 </ul>
 <!--<button type="button" class="btn btn-primary">Showing {{(driverObj.length >= 1 && driverObj.length < driversList.length)? driverObj.length :  pageSelected }} records</button>-->
 
-<!--NOTE : since you are using ng-switch, ng-switch-when, ng-switch-default ,
+<!--NOTE : since you are using ngSwitch, ngSwitchWhen, ngSwitch-default ,
 So import :
 import { NgSwitch, NgSwitchWhen, NgSwitchDefault} from 'angular2/core';
 -->
 Total  {{driverObj.length}},  [
-<span [ng-switch]="pageSelected" class="float-left">
+
+
+<span [ngSwitch]="pageSelected" class="float-left">
        <template  class="glyphicon glyphicon-user"></template>
-       <template [ng-switch-when]="0">No drivers. :-(</template>
-       <template [ng-switch-when]="1">1 driver!</template>
-       <template ng-switch-default> {{driverObj[0].Driver.givenName}}, {{driverObj[1].Driver.givenName}} and
-            <span class="badge badge-info">{{driverObj.length - 2}}</span> other !
+       <template [ngSwitchWhen]="0">No drivers. :-(</template>
+       <template [ngSwitchWhen]="1">1 driver!</template>
+       <template ngSwitchDefault >
+            {{driverObj[0].Driver.givenName}}, {{driverObj[1].Driver.givenName}}
+              and
+            <span class="badge badge-info">{{driverObj.length - 2}}</span>
+              other !
        </template>
- </span>]
+ </span>
+
+]
 <hr />
 <!--Header component -->
 <driverHeader></driverHeader>
 <!--Header component-->
 <hr/>
 <div class="row">
-    <ul class="list-group table"   *ng-for="#driver of driverObj | limitTo:pageSelected; #i= index">
+    <ul class="list-group table"   *ngFor="#driver of driverObj | limitTo:pageSelected; #i= index"> <!--TODO , PIPE : -->
     <li class="" >
 
         <div class="col-md-12">
             <div >{{i + 1}}</div>
             <div class="col-md-1">
-                <img src="/assets/images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"  />
+                <img src="assets/images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"  />
             </div>
             <div class="col-md-3">
                 <div class="col-md-12">
-                    <div class="col-md-4"> <a [router-link]="['/details', {name : driver.position}]">{{driver.Driver.givenName}}</a></div>
+                    <div class="col-md-4"> <a [routerLink]="['/Details', {name : driver.position}]">{{driver.Driver.givenName}}</a></div>
                     <div class="col-md-5">{{driver.Driver.familyName}}</div>
                     <div class="col-md-3">
-                        <nationality cty={{driver.Driver.nationality}}></nationality>
+                        <nationality [cty]="driver.Driver.nationality"></nationality>
                     </div>
                 </div>
             </div>
@@ -60,7 +67,7 @@ Total  {{driverObj.length}},  [
             </div>
             <div class="col-md-6">
                 <div class="col-md-12">
-                    <points alt={{driver.points}} ></points>
+                    <points [cty]="driver.points" ></points>
                     <div class="col-md-3">
                         <button type="button" class="btn btn-default btn-lg" disabled>
                             <span class="glyphicon glyphicon-user"></span> {{driver.position}}
@@ -69,8 +76,8 @@ Total  {{driverObj.length}},  [
                     <div class="col-md-3">
                         <button type="button" class="btn btn-default btn-lg " disabled>
 
-                            <span *ng-if="driver.wins == 0" class="glyphicon glyphicon-thumbs-down "></span>
-                            <span *ng-if="driver.wins != 0" class="glyphicon glyphicon-thumbs-up"></span>
+                            <span *ngIf="driver.wins == 0" class="glyphicon glyphicon-thumbs-down "></span>
+                            <span *ngIf="driver.wins != 0" class="glyphicon glyphicon-thumbs-up"></span>
                             {{driver.wins}}
                         </button>
                     </div>

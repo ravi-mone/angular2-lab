@@ -1,15 +1,22 @@
 import {readFileSync} from 'fs';
 import {argv} from 'yargs';
+import {normalize, join} from 'path';
 
 
 // --------------
 // Configuration.
+export const PROJECT_ROOT         = normalize(join(__dirname, '..'));
 export const ENV                  = argv['env']         || 'dev';
 export const DEBUG                = argv['debug']       || false;
 export const PORT                 = argv['port']        || 5555;
-export const LIVE_RELOAD_PORT     = argv['reload-port'] || 4005;
+export const LIVE_RELOAD_PORT     = argv['reload-port'] || 4002;
 export const DOCS_PORT            = argv['docs-port']   || 4003;
 export const APP_BASE             = argv['base']        || '/';
+
+export const ENABLE_HOT_LOADING   = !!argv['hot-loader'];
+export const HOT_LOADER_PORT      = 5578;
+
+export const BOOTSTRAP_MODULE     = ENABLE_HOT_LOADING ? 'hot_loader_bootstrap' : 'bootstrap';
 
 export const APP_TITLE            = 'My Angular2 App';
 
@@ -46,18 +53,18 @@ export const NPM_DEPENDENCIES = [
   { src: 'angular2/bundles/angular2.min.js', inject: 'libs', dest: LIB_DEST },
   { src: 'angular2/bundles/router.js', inject: 'libs', dest: LIB_DEST }, // use router.min.js with alpha47
   { src: 'angular2/bundles/http.min.js', inject: 'libs', dest: LIB_DEST },
+
   { src: 'jquery/dist/jquery.min.js', inject: 'libs', dest: LIB_DEST },
   { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs', dest: LIB_DEST },
-  { src: 'lodash/array/*', inject: 'libs', dest: LIB_DEST },
 
   { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true, dest: CSS_DEST },
-
+  { src: 'ng2-material/dist/ng2-material.css', inject: true, dest: CSS_DEST },
+  { src: 'ng2-material/dist/font.css', inject: true, dest: CSS_DEST }
 ];
 
 // Declare local files that needs to be injected
 export const APP_ASSETS = [
-  { src: `${ASSETS_SRC}/main.css`, inject: true, dest: CSS_DEST },
-  { src: `${ASSETS_SRC}/style.min.css`, inject: true, dest: CSS_DEST }
+  { src: `${ASSETS_SRC}/main.css`, inject: true, dest: CSS_DEST }
 ];
 
 NPM_DEPENDENCIES
@@ -73,6 +80,7 @@ const SYSTEM_CONFIG_DEV = {
   defaultJSExtensions: true,
   paths: {
     'bootstrap': `${APP_ROOT}bootstrap`,
+    'hot_loader_bootstrap': `${APP_ROOT}hot_loader_bootstrap`,
     '*': `${APP_BASE}node_modules/*`
   }
 };

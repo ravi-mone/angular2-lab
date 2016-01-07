@@ -1,18 +1,23 @@
-<h2 class="h2">{{header}}</h2>
-<ng-content></ng-content>
-<div>
-  <div class="dropdown pull-righ">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-      {{defaultSort}}
-      <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li *ngFor="#column of columns;"><a href="javascript:void(0)" (click)="sortBy(data[0].data, column)">{{column.displayName}}</a></li>
-
-    </ul>
+<md-toolbar mdScrollShrink>
+  <div class="md-toolbar-tools">
+    <ng-content ></ng-content>
+    <md-toolbar class="pull-right">
+      <div></div>
+    </md-toolbar>
+    <div class="pull-right">
+      <div><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+    </div>
+    <div class="dropdown pull-right">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        {{defaultSort}}
+        <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li *ngFor="#column of columns;"><a href="javascript:void(0)" (click)="sortBy(data[0].data, column)">{{column.displayName  || column}}</a></li>
+      </ul>
+    </div>
   </div>
-</div>
-
-<table class="mdl-data-table mdl-js-data-table full-width mdl-shadow--2dp" >
+</md-toolbar>
+<table mdScrollShrink class="mdl-data-table mdl-js-data-table full-width mdl-shadow--2dp" >
   <thead >
   <tr>
     <th *ngFor="#column of columns;">{{column.displayName || column}}</th>
@@ -32,3 +37,6 @@
   </tr>
   </tbody>
 </table>
+
+
+

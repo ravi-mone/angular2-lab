@@ -14,8 +14,11 @@ var name_list_1 = require('../../services/name_list');
 var user_1 = require('../../services/models/user');
 var auth_1 = require('../../services/auth/auth');
 var tablePlugin_1 = require('../plugins/tablePlugin');
+var F1Drivers_1 = require('../F1Drivers/F1Drivers');
+var events_1 = require('../Events/events');
 var directive_1 = require('../directive/directive');
 var app_injector_1 = require('../../helpers/app-injector');
+var all_1 = require('ng2-material/all');
 var AboutCmp = (function () {
     function AboutCmp(list, user, auth, _router) {
         var _this = this;
@@ -28,6 +31,7 @@ var AboutCmp = (function () {
         this.columns = [];
         this.auth = null;
         this.loggedIn = false;
+        this.determinateValue = 30;
         var injector = app_injector_1.appInjector();
         var httpRequest = injector.get(Request_1.HTTP_REQUEST_PROVIDER);
         this.auth = auth;
@@ -46,6 +50,7 @@ var AboutCmp = (function () {
                             displayName: 'Customer Name'
                         }
                     ];
+                _this.hideProgress = true;
                 _this.reports = [{ data: data, columns: _this.columns }];
                 _this.loadTable = true;
             }, function (err) { return console.log('Error', err); });
@@ -71,7 +76,9 @@ var AboutCmp = (function () {
         core_1.Component({
             selector: 'about',
             templateUrl: './components/about/about.html',
-            directives: [tablePlugin_1.TablePlugIn],
+            styleUrls: ['./components/about/about.css'],
+            encapsulation: core_1.ViewEncapsulation.None,
+            directives: [tablePlugin_1.TablePlugIn, F1Drivers_1.F1Drivers, events_1.EventsDemo, all_1.MATERIAL_DIRECTIVES],
             providers: [user_1.default, directive_1.ChatBlinkDirective, auth_1.Auth],
         }), 
         __metadata('design:paramtypes', [name_list_1.NameList, user_1.default, auth_1.Auth, router_1.Router])

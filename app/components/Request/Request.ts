@@ -39,7 +39,7 @@ export class HTTP_REQUEST_PROVIDER {
 
   login(type:string, url:string, queryString:any) {
 
-    var qString = `scope=retailer&client_id=ppPartner&client_secret=Nhgij-I87J5N0g4nso8H5J-uijd4sNbF4gha&grant_type=password&${this.queryBuilder(queryString)}`;
+    var qString = `scope=somethg&grant_type=password&${this.queryBuilder(queryString)}`;
     return this.auth.login(qString, url);
 
 

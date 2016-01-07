@@ -7,22 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var aggregateFn_1 = require("../pipes/aggregateFn");
 var CustomOrderByPipe_1 = require("../pipes/CustomOrderByPipe");
 var TablePlugIn = (function () {
-    function TablePlugIn(_router, title) {
+    function TablePlugIn(_router) {
         this._router = _router;
         this.columns = [];
         this.defaultSort = '-Select-';
         this.title = null;
         this.operator = null;
-        this.header = title;
-        console.log('title', title);
     }
     TablePlugIn.prototype.ngOnInit = function () {
         this.columns = this.data[0].columns;
@@ -46,13 +41,12 @@ var TablePlugIn = (function () {
     ], TablePlugIn.prototype, "pagination", void 0);
     TablePlugIn = __decorate([
         core_1.Component({
-            selector: 'tablePlugin',
+            selector: 'table-plugin',
             templateUrl: './components/plugins/table.html',
             styleUrls: ['/assets/style.min.css'],
             pipes: [aggregateFn_1.aggregateFnPipe, CustomOrderByPipe_1.CustomOrderByPipe]
-        }),
-        __param(1, core_1.Attribute('title')), 
-        __metadata('design:paramtypes', [router_1.Router, Object])
+        }), 
+        __metadata('design:paramtypes', [router_1.Router])
     ], TablePlugIn);
     return TablePlugIn;
 })();

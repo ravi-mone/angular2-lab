@@ -14,7 +14,6 @@ import {F1Drivers}        from '../F1Drivers/F1Drivers';
 import {Details}          from '../F1Drivers/Details/details';
 import {EventsDemo}       from '../Events/events';
 
-
 @Component({
   selector: 'app',
   viewProviders: [NameList],
@@ -26,9 +25,7 @@ import {EventsDemo}       from '../Events/events';
 @RouteConfig([
   { path: '/login',         component: LoginCmp,      as: 'Login', useAsDefault:true },
   { path: '/about',         component: AboutCmp,      as: 'About'   },
-  { path: '/drivers',       component: F1Drivers,     as: 'drivers' },
-  { path: '/details/:name', component: Details,       as: 'details' },
-  { path: '/events',        component: EventsDemo,    as: 'events'  }
+  { path: '/details/:name', component: Details,       as: 'Details' }
 ])
 
 

@@ -8,6 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
+var all_1 = require('ng2-material/all');
 var router_1 = require('angular2/router');
 var Request_1 = require('../Request/Request');
 var user_1 = require('../../services/models/user');
@@ -32,19 +33,22 @@ var LoginCmp = (function () {
         this.user = user;
         this._router = _router;
         this.authenticator = authenticator;
-        this.username = 'BNT2010';
-        this.password = 'bnt2010';
+        this.username = '';
+        this.password = '';
         this.showError = false;
     }
     LoginCmp.prototype.subitForm = function () {
         var _this = this;
+        if (this.username != 'demo123' && this.password != 'password') {
+            this.showError = true;
+            return false;
+        }
         try {
             this.authenticator.login('GET', '568142e2120000960993a242', { username: this.username, password: this.password })
                 .then(function () {
                 _this._router.navigate(['/About']);
             })
                 .catch(function (e) {
-                _this.showError = true;
             });
         }
         catch (e) {
@@ -55,9 +59,8 @@ var LoginCmp = (function () {
         core_1.Component({
             selector: 'login',
             templateUrl: './components/login/login.html',
-            encapsulation: core_1.ViewEncapsulation.None,
             providers: [Request_1.HTTP_REQUEST_PROVIDER, user_1.default],
-            directives: [MdlUpgradeDirective]
+            directives: [MdlUpgradeDirective, all_1.MATERIAL_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [user_1.default, router_1.Router, Request_1.HTTP_REQUEST_PROVIDER])
     ], LoginCmp);

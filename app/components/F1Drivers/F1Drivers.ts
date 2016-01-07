@@ -1,10 +1,16 @@
-import {Component, View, OnInit}      from 'angular2/core';
+import {Component, View, OnInit, Directive, Pipe}      from 'angular2/core';
 import {Http}                         from 'angular2/http';
-import {RouterLink}                   from 'angular2/router';
+import {
+  RouteConfig,
+  ROUTER_DIRECTIVES,
+  RouteDefinition,
+  RouterOutlet
+} from 'angular2/router';
 import {Points}                       from './points/points';
 import {Nationality}                  from './nationality/nationality';
 import {driverHeader}                 from './Header/driverheader';
 import {NamesList}                    from '../../services/models/NameList';
+import {limitToPipe}                      from '../pipes/limitTo';
 //import UserRepo from '../../services/repositories/user_repo';
 
 
@@ -16,7 +22,8 @@ import {NamesList}                    from '../../services/models/NameList';
    * */
   providers: [NamesList],
   templateUrl: './components/F1Drivers/f1Drivers.html',
-  directives: [Points, Nationality, driverHeader, RouterLink]
+  directives: [Points, Nationality, driverHeader, ROUTER_DIRECTIVES],
+  pipes:[limitToPipe]
   //viewBindings: [httpInjectables]
 })
 export class F1Drivers implements OnInit {
@@ -25,16 +32,16 @@ export class F1Drivers implements OnInit {
   driversList:Array<Object>;
 
   constructor(private list:NamesList, private http:Http) {
-
-  }
-
-  onInit() {
     var result = this.list.get();
     if (result) {
       this.driverObj = result[0]['DriverStandings'];
+
+
       this.driversList = this.driverObj;
       this.pageSelected = this.driverObj.length;
-    }
+  }
+
+
   }
 
   showSelected(limitTo) {

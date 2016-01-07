@@ -9,10 +9,10 @@ gulp.task('postinstall', function (done) {
     return utils_1.runSequence('clean', 'npm', done);
 });
 gulp.task('build.dev', function (done) {
-    return utils_1.runSequence('clean.dist', 'tslint', 'build.sass.dev', 'build.img.dev', 'build.js.dev', 'build.index', done);
+    return utils_1.runSequence('clean.dist', 'tslint', 'build.assets.dev', 'build.js.dev', 'build.index', done);
 });
 gulp.task('build.prod', function (done) {
-    return utils_1.runSequence('clean.dist', 'clean.tmp', 'tslint', 'build.sass.dev', 'build.img.dev', 'build.html_css.prod', 'build.deps', 'build.js.prod', 'build.bundles', 'build.index', done);
+    return utils_1.runSequence('clean.dist', 'clean.tmp', 'tslint', 'build.assets.prod', 'build.html_css.prod', 'build.deps', 'build.js.prod', 'build.bundles', 'build.index', done);
 });
 gulp.task('build.dev.watch', function (done) {
     return utils_1.runSequence('build.dev', 'watch.dev', done);

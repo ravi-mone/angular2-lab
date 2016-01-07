@@ -14,19 +14,18 @@ var points_1 = require('./points/points');
 var nationality_1 = require('./nationality/nationality');
 var driverheader_1 = require('./Header/driverheader');
 var NameList_1 = require('../../services/models/NameList');
+var limitTo_1 = require('../pipes/limitTo');
 var F1Drivers = (function () {
     function F1Drivers(list, http) {
         this.list = list;
         this.http = http;
-    }
-    F1Drivers.prototype.onInit = function () {
         var result = this.list.get();
         if (result) {
             this.driverObj = result[0]['DriverStandings'];
             this.driversList = this.driverObj;
             this.pageSelected = this.driverObj.length;
         }
-    };
+    }
     F1Drivers.prototype.showSelected = function (limitTo) {
         console.log('limitTo', limitTo);
         this.pageSelected = limitTo;
@@ -53,7 +52,8 @@ var F1Drivers = (function () {
             selector: 'f1Drivers',
             providers: [NameList_1.NamesList],
             templateUrl: './components/F1Drivers/f1Drivers.html',
-            directives: [points_1.Points, nationality_1.Nationality, driverheader_1.driverHeader, router_1.RouterLink]
+            directives: [points_1.Points, nationality_1.Nationality, driverheader_1.driverHeader, router_1.ROUTER_DIRECTIVES],
+            pipes: [limitTo_1.limitToPipe]
         }), 
         __metadata('design:paramtypes', [NameList_1.NamesList, http_1.Http])
     ], F1Drivers);

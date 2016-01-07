@@ -13,10 +13,10 @@ var driverHeader = (function () {
     function driverHeader(list) {
         this.list = list;
         this.isreverse = false;
-    }
-    driverHeader.prototype.onInit = function () {
         this.driverObj = this.list.get();
         this.driverObj = this.driverObj[0]['DriverStandings'];
+    }
+    driverHeader.prototype.onInit = function () {
     };
     driverHeader.prototype.sortBy = function (name) {
         if (this.isreverse == false) {
@@ -35,7 +35,7 @@ var driverHeader = (function () {
     driverHeader = __decorate([
         core_1.Component({
             selector: 'driverHeader',
-            templateUrl: './components/F1Drivers/Header/driverheader.html?v=<%= VERSION %>'
+            templateUrl: './components/F1Drivers/Header/driverheader.html'
         }), 
         __metadata('design:paramtypes', [NameList_1.NamesList])
     ], driverHeader);

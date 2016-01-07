@@ -8,7 +8,7 @@ import {NamesList} from '../../../services/models/NameList';
 @Component({
     selector: 'Details',
     providers:[NamesList],
-    templateUrl: './components/F1Drivers/Details/details.html?v=<%= VERSION %>',
+    templateUrl: './components/F1Drivers/Details/details.html',
     directives: [RouterLink, Nationality, Points, CORE_DIRECTIVES]
 })
 
@@ -19,8 +19,7 @@ export class Details {
     showWhenTrue=false;
     constructor(@Inject(NamesList) public list: NamesList,  params:RouteParams){
         this.id = params.get('name');
+      this.driver=this.list.getDriverSpecific(this.id - 1);
     }
-    onInit() {
-        this.driver=this.list.getDriverSpecific(this.id - 1);
-    }
+
 }
