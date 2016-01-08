@@ -233,6 +233,16 @@ npm test
 # Debug - In two different shell windows
 npm run build.test.watch      # 1st window
 npm run karma.start           # 2nd window
+
+# e2e (aka. end-to-end, integration) - In three different shell windows
+npm start
+# npm run webdriver-update <- You may need to run this the first time
+npm run webdriver-start
+npm run e2e
+
+# e2e live mode - Protractor interactive mode
+# Instead of last command above, you can use:
+npm run e2e-live
 ```
 
 # Contributing
