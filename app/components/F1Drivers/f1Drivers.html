@@ -1,29 +1,32 @@
-<ul class="list-group">
-<li class="list-group-item"><b>Formula 1, 2013 Drivers Position</b></li>
-<li class="list-group-item">
-    <div class="input-group">
+<div *ngIf="showTable">
+  <ul class="list-group">
+    <li class="list-group-item"><b>Formula 1, 2013 Drivers Position</b></li>
+    <li class="list-group-item">
+      <div class="input-group">
         <!--NOTE : reference names should be always in lowwercase only -->
         <input name="driver" #namefilter  class="form-control" placeholder="Search...">
         <span class="input-group-addon glyphicon glyphicon-search" (click)="filterByNames(namefilter, newtitle)" style="top:0px;cursor: pointer;" ></span>
-        <span style="margin-left: 20px;cursor: pointer;" title="Reset" class="glyphicon glyphicon-refresh" (click)="nameFilter = '';filterByNames();" ></span>
-    </div>
-</li>
-</ul>
-<hr/>
-Show:
-<ul id="display-inline-block-example" role="menu">
-    <li><a (click)="showSelected(5);">5</a></li>
-    <li><a (click)="showSelected(10);">10</a></li>
-    <li><a (click)="showSelected(20);">20</a></li>
-    <li><a (click)="showSelected(driversList.length);">All</a></li>
-</ul>
-<!--<button type="button" class="btn btn-primary">Showing {{(driverObj.length >= 1 && driverObj.length < driversList.length)? driverObj.length :  pageSelected }} records</button>-->
+        <span style="margin-left: 20px;cursor: pointer; top: -6px;" title="Reset" class="glyphicon glyphicon-refresh" (click)="nameFilter = '';filterByNames();" ></span>
+      </div>
+    </li>
+  </ul>
+  <hr/>
+  <div class="clearfix pagination-div">
+    <span class="pull-left">Show:</span>
+    <ul id="display-inline-block-example" role="menu">
+      <li><a (click)="showSelected(5);">5</a></li>
+      <li><a (click)="showSelected(10);">10</a></li>
+      <li><a (click)="showSelected(20);">20</a></li>
+      <li><a (click)="showSelected(driversList.length);">All</a></li>
+    </ul>
+  </div>
+  <!--<button type="button" class="btn btn-primary">Showing {{(driverObj.length >= 1 && driverObj.length < driversList.length)? driverObj.length :  pageSelected }} records</button>-->
 
-<!--NOTE : since you are using ngSwitch, ngSwitchWhen, ngSwitch-default ,
-So import :
-import { NgSwitch, NgSwitchWhen, NgSwitchDefault} from 'angular2/core';
--->
-Total  {{driverObj.length}},  [
+  <!--NOTE : since you are using ngSwitch, ngSwitchWhen, ngSwitch-default ,
+  So import :
+  import { NgSwitch, NgSwitchWhen, NgSwitchDefault} from 'angular2/core';
+  -->
+  Total  {{driverObj.length}},  [
 
 
 <span [ngSwitch]="pageSelected" class="float-left">
@@ -31,68 +34,70 @@ Total  {{driverObj.length}},  [
        <template [ngSwitchWhen]="0">No drivers. :-(</template>
        <template [ngSwitchWhen]="1">1 driver!</template>
        <template ngSwitchDefault >
-            {{driverObj[0].Driver.givenName}}, {{driverObj[1].Driver.givenName}}
-              and
-            <span class="badge badge-info">{{driverObj.length - 2}}</span>
-              other !
+         {{driverObj[0].Driver.givenName}}, {{driverObj[1].Driver.givenName}}
+         and
+         <span class="badge badge-info">{{driverObj.length - 2}}</span>
+         other !
        </template>
  </span>
 
-]
-<hr />
-<!--Header component -->
-<driverHeader></driverHeader>
-<!--Header component-->
-<hr/>
-<div class="row">
+  ]
+  <hr />
+  <!--Header component -->
+
+  <driverHeader [driverdata]="driverObj"></driverHeader>
+  <!--Header component-->
+  <hr/>
+  <div class="row">
     <ul class="list-group table"   *ngFor="#driver of driverObj | limitTo:pageSelected; #i= index"> <!--TODO , PIPE : -->
-    <li class="" >
+      <li class="" >
 
         <div class="col-md-12">
-            <div >{{i + 1}}</div>
-            <div class="col-md-1">
-                <img src="assets/images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"  />
+          <div >{{i + 1}}</div>
+          <div class="col-md-1">
+            <img src="assets/images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"  />
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="col-md-3" style="text-align: right;"> <a [routerLink]="['/Details', {name : driver.position}]">{{driver.Driver.givenName}}</a></div>
+              <div class="col-md-4" style="text-align: right;">{{driver.Driver.familyName}}</div>
+              <div class="col-md-5">
+                <nationality [cty]="driver.Driver.nationality"></nationality>
+              </div>
             </div>
-            <div class="col-md-3">
-                <div class="col-md-12">
-                    <div class="col-md-4"> <a [routerLink]="['/Details', {name : driver.position}]">{{driver.Driver.givenName}}</a></div>
-                    <div class="col-md-5">{{driver.Driver.familyName}}</div>
-                    <div class="col-md-3">
-                        <nationality [cty]="driver.Driver.nationality"></nationality>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                {{driver.Constructors[0].name}}
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <points [cty]="driver.points" ></points>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-default btn-lg" disabled>
-                            <span class="glyphicon glyphicon-user"></span> {{driver.position}}
-                        </button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-default btn-lg " disabled>
+          </div>
+          <div class="col-md-1">
+            {{driver.Constructors[0].name}}
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12">
+              <points [cty]="driver.points" ></points>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-default btn-lg" disabled>
+                  <span class="glyphicon glyphicon-user"></span> {{driver.position}}
+                </button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-default btn-lg " disabled>
 
-                            <span *ngIf="driver.wins == 0" class="glyphicon glyphicon-thumbs-down "></span>
-                            <span *ngIf="driver.wins != 0" class="glyphicon glyphicon-thumbs-up"></span>
-                            {{driver.wins}}
-                        </button>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="{{driver.Driver.url}}" target="_blank"><button type="button" class="btn btn-default btn-lg" >
+                  <span *ngIf="driver.wins == 0" class="glyphicon glyphicon-thumbs-down "></span>
+                  <span *ngIf="driver.wins != 0" class="glyphicon glyphicon-thumbs-up"></span>
+                  {{driver.wins}}
+                </button>
+              </div>
+              <div class="col-md-3">
+                <a href="{{driver.Driver.url}}" target="_blank"><button type="button" class="btn btn-default btn-lg" >
                                     <span class="glyphicon glyphicon-globe">
                                         Wiki
                                     </span>
-                        </button></a>
-                    </div>
-                </div>
-
-
+                </button></a>
+              </div>
             </div>
+
+
+          </div>
         </div>
-    </li>
-</ul>
+      </li>
+    </ul>
+  </div>
 </div>

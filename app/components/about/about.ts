@@ -1,7 +1,6 @@
 import {Component, Injector, Directive, Inject, ViewEncapsulation}   from 'angular2/core';
 import { CanActivate, Router}                    from 'angular2/router';
 import {HTTP_REQUEST_PROVIDER}            from '../Request/Request'
-import {NameList}                         from '../../services/name_list';
 import User                               from '../../services/models/user'
 import {Auth}                             from '../../services/auth/auth'
 import {TablePlugIn}                      from '../plugins/tablePlugin'
@@ -31,7 +30,7 @@ export class AboutCmp{
   auth:any =null;
   loggedIn: boolean = false;
   determinateValue: number = 30;
-  constructor(public list:NameList, public user:User, public auth:Auth, public _router:Router) {
+  constructor(public user:User, public auth:Auth, public _router:Router) {
 
     let injector: Injector = appInjector();
     let httpRequest: HTTP_REQUEST_PROVIDER = injector.get(HTTP_REQUEST_PROVIDER);

@@ -8,7 +8,6 @@ import {
 } from 'angular2/router';
 import {LoginCmp}         from '../login/login';
 import {AboutCmp}         from '../about/about';
-import {NameList}         from '../../services/name_list';
 import User               from '../../services/models/user';
 import {F1Drivers}        from '../F1Drivers/F1Drivers';
 import {Details}          from '../F1Drivers/Details/details';
@@ -16,7 +15,6 @@ import {EventsDemo}       from '../Events/events';
 
 @Component({
   selector: 'app',
-  viewProviders: [NameList],
   templateUrl: './components/app/app.html',
   styleUrls: ['./components/app/app.css'],
   encapsulation: ViewEncapsulation.None,

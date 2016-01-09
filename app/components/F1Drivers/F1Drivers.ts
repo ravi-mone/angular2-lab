@@ -30,22 +30,30 @@ export class F1Drivers implements OnInit {
   driverObj:Array<Object>;
   pageSelected:number;
   driversList:Array<Object>;
-
-  constructor(private list:NamesList, private http:Http) {
-    var result = this.list.get();
-    if (result) {
-      this.driverObj = result[0]['DriverStandings'];
+  showTable:boolean=false;
 
 
-      this.driversList = this.driverObj;
-      this.pageSelected = this.driverObj.length;
+  public ngOnInit(): void {
+
+    try {
+      var result = this.list.get()
+      .subscribe(res => {
+        let data = res.json();
+        this.driverObj = data[0]['DriverStandings'];
+         this.driversList = this.driverObj;
+        this.pageSelected = this.driverObj.length;
+        this.showTable= true;
+      });
+    } catch (e) {
+      console.log(e)
+    }
   }
 
+  constructor(private list:NamesList, private http:Http) {
 
   }
 
   showSelected(limitTo) {
-    console.log('limitTo', limitTo);
     this.pageSelected = limitTo;
   }
 

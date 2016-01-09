@@ -8,6 +8,7 @@ import {NamesList} from '../../../services/models/NameList';
 
 @Component({
     selector: 'driverHeader',
+    inputs:['driverObj:driverdata'],
     templateUrl: './components/F1Drivers/Header/driverheader.html'
 })
 export class driverHeader implements onInit{
@@ -15,12 +16,13 @@ export class driverHeader implements onInit{
     driverObj:Array<Object>;
     isreverse:boolean = false;
 
-    constructor(public list: NamesList){
-      this.driverObj=this.list.get();
-      this.driverObj = this.driverObj[0]['DriverStandings'];
+    public ngOnInit(){
+     // console.log(this.driverObj); //This will print the values
     }
-    onInit() {
 
+  constructor(){
+    // `constructor` is too early in the lifecycle, inputs haven't been hooked up yet,
+    //console.log( this.driverObj);  //This will NOT print the values.
     }
 
     sortBy(name) {
