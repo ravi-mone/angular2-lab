@@ -29,20 +29,9 @@
 
 
 <md-card *ngIf="showWhenTrue">
-  <md-card-title>
-    <md-card-title-text>
-      <span class="md-headline">
-       TODO some legends here
-      </span>
-      <span class="md-subhead">
-        <md-card-content>
-          TODO, highchart implementation
-         <!-- <div [ng2-highcharts]="chartOptions" class="graph"></div>-->
-        </md-card-content>
-      </span>
-    </md-card-title-text>
 
-  </md-card-title>
+  <chart [chartdata]="driverData" [drivername]="driver" ></chart>
+
   <md-card-actions layout="row" layout-align="center">
     <a [routerLink]="['/About']">
       <button md-button>Back To About</button>

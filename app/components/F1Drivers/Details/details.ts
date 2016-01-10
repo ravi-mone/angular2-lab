@@ -1,21 +1,21 @@
-import {Component, View,Inject} from 'angular2/core';
+import {Component, OnInit,Inject} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {Router, RouteParams, RouterLink} from 'angular2/router';
 import {RouteParams} from 'angular2/router';
 import {Nationality} from '../nationality/nationality'
 import {Points} from '../points/points'
 import {NamesList} from '../../../services/models/NameList';
-import {Ng2Highcharts} from 'ng2-highcharts/ng2-highcharts';
-
+import {Chart} from '../chart/chart'
+import {OnInit} from "angular2/core";
 
 @Component({
   selector: 'driver-details',
   providers: [NamesList],
   templateUrl: './components/F1Drivers/Details/details.html',
-  directives: [RouterLink, Nationality, Points, CORE_DIRECTIVES, Ng2Highcharts]
+  directives: [RouterLink, Nationality, Points, CORE_DIRECTIVES, Chart]
 })
 
-export class Details {
+export class Details implements OnInit{
   driverObj:Array<Object>;
   driver:Object;
   id:number;
@@ -27,8 +27,8 @@ export class Details {
     var result = this.list.get()
       .subscribe(res => {
         let data = res.json();
-        console.log(data)
-        this.driver = data[0]['DriverStandings'][this.id];
+        this.driverData=data[0]['DriverStandings'];
+        this.driver = data[0]['DriverStandings'][this.id - 1];
         this.showWhenTrue = true;
       })
 
@@ -57,7 +57,12 @@ export class Details {
       }]
     };
 
+
+      /*driverdata*/
+
   }
+
+
 
 
 }
