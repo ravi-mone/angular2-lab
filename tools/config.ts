@@ -52,7 +52,6 @@ export const NPM_DEPENDENCIES = [
   { src: 'rxjs/bundles/Rx.min.js', inject: 'libs', dest: LIB_DEST },
   { src: 'angular2/bundles/angular2.min.js', inject: 'libs', dest: LIB_DEST },
   { src: 'angular2/bundles/router.js', inject: 'libs', dest: LIB_DEST }, // use router.min.js with alpha47
-  { src: 'angular2/bundles/http.min.js', inject: 'libs', dest: LIB_DEST },
   { src: 'highcharts/highcharts.js', inject: 'libs', dest: LIB_DEST },
 
   { src: 'jquery/dist/jquery.min.js', inject: 'libs', dest: LIB_DEST },

@@ -1,7 +1,5 @@
 import {Component, View} from 'angular2/core';
 import {Ng2Highcharts} from 'ng2-highcharts/ng2-highcharts';
-//import {_} from 'lodash/array'
-
 @Component({
 	selector: 'chart',
 	inputs: ['chartData:chartdata', 'driverName:drivername'],

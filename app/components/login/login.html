@@ -12,11 +12,12 @@
     </md-input-container>
     <md-input-container>
       <label for="content">Password</label>
-      <input md-input type="text" id="content" [(ngModel)]="password">
+      <input md-input type="password" id="content" [(ngModel)]="password">
     </md-input-container>
   </md-card-content>
   <md-card-actions layout="row" layout-align="center">
     <button md-raised-button class="md-raised md-primary"  [disabled]="!username || !password"  (click)="subitForm()">Submit</button>
+
   </md-card-actions>
 </md-card>
 <div class="mdl-cell mdl-cell--12-col status-red center" [hidden]="!showError">

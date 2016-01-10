@@ -28,11 +28,12 @@ export const isAdmin = (target: string) => {
   return auth.check()
   				.then((result) => {
   					if (result) {
-							if (!auth.isAdmin) {
+              //TODO, Need to extend this yet
+							/*if (!auth.isAdmin) {
 								router.navigateByInstruction(router.generate(['/Restricted']), true);
 								return false;
 							}
-
+*/
   						return true;
   					} else {
 							router.navigate(['/Login', {target}]);

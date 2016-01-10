@@ -27,7 +27,6 @@ export class AboutCmp{
   loadTable: boolean =false;
   reports:Object = null;
   columns:Object = [];
-  auth:any =null;
   loggedIn: boolean = false;
   determinateValue: number = 30;
   constructor(public user:User, public auth:Auth, public _router:Router) {
@@ -55,7 +54,6 @@ export class AboutCmp{
             displayName: 'Customer Name'
           }
         ];
-        this.hideProgress = true;
         this.reports = [{ data :  data, columns : this.columns}];
         this.loadTable=true;
       }, err => console.log('Error', err));

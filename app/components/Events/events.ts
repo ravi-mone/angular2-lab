@@ -1,12 +1,12 @@
 import { Component, View} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {CORE_DIRECTIVES} from 'angular2/common';
 import {NamesList} from '../../services/models/NameList';
 
 @Component({
   selector: 'events-demo',
   providers: [NamesList],
   templateUrl: './components/Events/events.html',
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
+  directives: [CORE_DIRECTIVES]
 })
 
 export class EventsDemo {

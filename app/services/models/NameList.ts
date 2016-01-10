@@ -3,10 +3,10 @@
  1.  import {Inject} from 'angular2/angular2';
  2. @Inject(Http) private _http: Http in constructor
  */
-import { Inject, Injectable, OnInit, Injector } from 'angular2/core';
+import { Inject, Injectable, Injector } from 'angular2/core';
 import {Http, Request, RequestMethod} from 'angular2/http';
 @Injectable()
-export class NamesList implements OnInit {
+export class NamesList {
 
   driverNames:Array < any > = [];
   articleList:Array < Object > = [];

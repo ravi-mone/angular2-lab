@@ -2,7 +2,7 @@
  * Created by ravi on 28/8/15.
  */
 
-import {Component, View, onInit} from 'angular2/core';
+import {Component, View, OnInit} from 'angular2/core';
 
 import {NamesList} from '../../../services/models/NameList';
 
@@ -11,7 +11,7 @@ import {NamesList} from '../../../services/models/NameList';
     inputs:['driverObj:driverdata'],
     templateUrl: './components/F1Drivers/Header/driverheader.html'
 })
-export class driverHeader implements onInit{
+export class driverHeader implements OnInit{
 
     driverObj:Array<Object>;
     isreverse:boolean = false;

@@ -4,7 +4,8 @@ import {Router}                                                         from 'an
 import {HTTP_REQUEST_PROVIDER}                                                        from '../Request/Request';
 import User                                                             from '../../services/models/user';
 
-@Directive({
+//This is the way to make the
+/*@Directive({
   selector: '[mdlUpgrade]'
 })
 class MdlUpgradeDirective {
@@ -13,14 +14,14 @@ class MdlUpgradeDirective {
   constructor(el: ElementRef) {
     componentHandler.upgradeElement(el.nativeElement);
   }
-}
+}*/
 
 
 @Component({
   selector: 'login',
   templateUrl: './components/login/login.html',
   providers: [HTTP_REQUEST_PROVIDER, User],
-  directives: [MdlUpgradeDirective, MATERIAL_DIRECTIVES]
+  directives: [/*MdlUpgradeDirective, */ MATERIAL_DIRECTIVES]
 })
 export class LoginCmp {
   username= '';

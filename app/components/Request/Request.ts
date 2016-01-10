@@ -16,7 +16,7 @@ export class HTTP_REQUEST_PROVIDER {
   public queryBuilder(queryObject:any) {
     var str = '';
 
-    for (key in queryObject) {
+    for (let key in queryObject) {
       str += key + '=' + queryObject[key] + '&';
     }
     str = str.substr(0, str.length - 1);

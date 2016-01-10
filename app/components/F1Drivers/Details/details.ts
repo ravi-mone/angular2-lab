@@ -1,12 +1,10 @@
-import {Component, OnInit,Inject} from 'angular2/core';
+import {Component, Inject} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {Router, RouteParams, RouterLink} from 'angular2/router';
-import {RouteParams} from 'angular2/router';
 import {Nationality} from '../nationality/nationality'
 import {Points} from '../points/points'
 import {NamesList} from '../../../services/models/NameList';
 import {Chart} from '../chart/chart'
-import {OnInit} from "angular2/core";
 
 @Component({
   selector: 'driver-details',
@@ -15,20 +13,20 @@ import {OnInit} from "angular2/core";
   directives: [RouterLink, Nationality, Points, CORE_DIRECTIVES, Chart]
 })
 
-export class Details implements OnInit{
+export class Details{
   driverObj:Array<Object>;
   driver:Object;
-  id:number;
+  id:string;
   showWhenTrue = false;
   chartOptions:any;
-
+  driverData:Array<Object>;
   constructor(public list:NamesList, params:RouteParams) {
     this.id = params.get('name');
     var result = this.list.get()
       .subscribe(res => {
         let data = res.json();
         this.driverData=data[0]['DriverStandings'];
-        this.driver = data[0]['DriverStandings'][this.id - 1];
+        this.driver = data[0]['DriverStandings'][parseInt(this.id,10) - 1];
         this.showWhenTrue = true;
       })
 

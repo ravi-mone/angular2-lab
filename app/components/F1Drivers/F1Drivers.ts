@@ -10,8 +10,8 @@ import {Points}                       from './points/points';
 import {Nationality}                  from './nationality/nationality';
 import {driverHeader}                 from './Header/driverheader';
 import {NamesList}                    from '../../services/models/NameList';
-import {limitToPipe}                      from '../pipes/limitTo';
-//import UserRepo from '../../services/repositories/user_repo';
+import {limitToPipe}                  from '../pipes/limitTo';
+
 
 
 @Component({
@@ -54,7 +54,10 @@ export class F1Drivers implements OnInit {
   }
 
   showSelected(limitTo) {
-    this.pageSelected = limitTo;
+    this.driverObj = this.driversList;
+
+    this.driverObj = _.chunk(this.driverObj, limitTo)[0];
+   // this.pageSelected = limitTo;
   }
 
   //Function called when the user clicks on the search button.
@@ -78,7 +81,7 @@ export class F1Drivers implements OnInit {
     var self = this;
     this.driverObj = this.driverObj.filter(function (Obj) {
 
-      return self.filterObj(Obj, Obj.Driver.givenName, nameFilter.value);
+      return self.filterObj(Obj, Obj. Driver.givenName, nameFilter.value);
     });
     this.pageSelected = this.driverObj.length;
   }

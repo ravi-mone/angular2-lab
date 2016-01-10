@@ -4,7 +4,7 @@ import {DatePipe} from 'angular2/common'
 
 @Pipe({name: 'aggregateFn'})
 export class aggregateFnPipe {
-  transform(value:number, args:string[]) : any {
+  transform(value:string, args:string[]) : any {
     var decor:any =null;
     if(args[0]){
       switch(args[0]){
