@@ -1,12 +1,11 @@
-import {Component, Injector, Directive, Inject, ViewEncapsulation}   from 'angular2/core';
-import { CanActivate, Router}                    from 'angular2/router';
-import {HTTP_REQUEST_PROVIDER}            from '../Request/Request'
-import User                               from '../../services/models/user'
-import {Auth}                             from '../../services/auth/auth'
-import {TablePlugIn}                      from '../plugins/tablePlugin'
-import {F1Drivers}                        from '../F1Drivers/F1Drivers'
-import {EventsDemo}                       from '../Events/events'
-import {ChatBlinkDirective}               from '../directive/directive'
+import {Component, Injector, ViewEncapsulation}   from 'angular2/core';
+import { Router}                    from 'angular2/router';
+import {HttpRequestProvider}            from '../Request/Request';
+import User                               from '../../services/models/user';
+import {Auth}                             from '../../services/auth/auth';
+import {TablePlugIn}                      from '../plugins/tablePlugin';
+import {F1Drivers}                        from '../F1Drivers/F1Drivers';
+import {EventsDemo}                       from '../Events/events';
 import {appInjector}                      from '../../helpers/app-injector';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 
@@ -19,7 +18,7 @@ import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
   //encapsulation:ViewEncapsulation.None/Emulated/Native,
   encapsulation:ViewEncapsulation.None,
   directives :[TablePlugIn, F1Drivers, EventsDemo, MATERIAL_DIRECTIVES],
-  providers: [User, ChatBlinkDirective, Auth],
+  providers: [User, Auth],
 })
 
 export class AboutCmp{
@@ -32,7 +31,7 @@ export class AboutCmp{
   constructor(public user:User, public auth:Auth, public _router:Router) {
 
     let injector: Injector = appInjector();
-    let httpRequest: HTTP_REQUEST_PROVIDER = injector.get(HTTP_REQUEST_PROVIDER);
+    let httpRequest: HttpRequestProvider = injector.get(HttpRequestProvider);
     this.auth = auth;
     try {
       //var injector = Injector.resolveAndCreate([]);

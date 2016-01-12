@@ -4,8 +4,8 @@ import {ROUTER_PROVIDERS,
   LocationStrategy,
   HashLocationStrategy}         from 'angular2/router';
 import {AppCmp}                 from './components/app/app';
-import USER_PROVIDER            from './services/models/user';
-import {HTTP_REQUEST_PROVIDER}  from './components/Request/Request';
+import User_Provider            from './services/models/user';
+import {HttpRequestProvider}  from './components/Request/Request';
 import {HTTP_PROVIDERS}         from 'angular2/http';
 import {appInjector}            from './helpers/app-injector';
 import {AUTH_PROVIDERS}         from './services/auth/auth';
@@ -13,8 +13,8 @@ import {AUTH_PROVIDERS}         from './services/auth/auth';
 bootstrap(AppCmp, [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
-  USER_PROVIDER,
-  HTTP_REQUEST_PROVIDER,
+  User_Provider,
+  HttpRequestProvider,
   AUTH_PROVIDERS,
   provide('APIEndpoint', {
     useValue: 'http://www.mocky.io/v2/'

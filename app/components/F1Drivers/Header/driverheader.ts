@@ -2,7 +2,7 @@
  * Created by ravi on 28/8/15.
  */
 
-import {Component, View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 
 import {NamesList} from '../../../services/models/NameList';
 

@@ -3,7 +3,7 @@
  1.  import {Inject} from 'angular2/angular2';
  2. @Inject(Http) private _http: Http in constructor
  */
-import { Inject, Injectable, Injector } from 'angular2/core';
+import { Inject, Injectable } from 'angular2/core';
 import {Http, Request, RequestMethod} from 'angular2/http';
 @Injectable()
 export class NamesList {
@@ -20,8 +20,8 @@ export class NamesList {
     //return this.driverNames;
     return this.http.request(new Request({
       method: RequestMethod.Get,
-      url: this.api + '5691823f1200005617d7d18e',
-    }))
+      url: this.api + '5691823f1200005617d7d18e'
+    }));
 
   }
 

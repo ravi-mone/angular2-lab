@@ -1,4 +1,4 @@
-export default class USER_PROVIDER {
+export default class User_Provider {
 
   SIGNED_IN_KEY = 'pp.signed-in';
   USER_KEY      = 'pp.user';
@@ -11,7 +11,7 @@ export default class USER_PROVIDER {
 
   _username;
   _password;  // do not persist!
-  _signed_in   = localStorage.getItem(this.SIGNED_IN_KEY) === "true";
+  _signed_in   = localStorage.getItem(this.SIGNED_IN_KEY) === 'true';
   _login_error = false;
   _user        = localStorage.getItem(this.USER_KEY) ? JSON.parse(localStorage.getItem(this.USER_KEY)) : {};
 

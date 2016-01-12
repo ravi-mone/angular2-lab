@@ -1,14 +1,14 @@
 /**
  * Created by techjini on 23/12/15.
  */
-import {Injectable, provide, Inject, Injector}  from 'angular2/core';
+import {Injectable, Inject}  from 'angular2/core';
 import {Http, Request, RequestMethod, Headers}  from 'angular2/http';
 import User                                     from '../../services/models/user';
 import {Auth}                                     from '../../services/auth/auth';
 import {Router}                                 from 'angular2/router';
 
 @Injectable()
-export class HTTP_REQUEST_PROVIDER {
+export class HttpRequestProvider {
   api=null;
   userSignedIn=false;
 

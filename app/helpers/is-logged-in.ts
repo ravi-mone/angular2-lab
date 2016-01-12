@@ -1,7 +1,7 @@
 import {Injector} from 'angular2/core';
 import {appInjector} from './app-injector';
 import {Auth} from '../services/auth/auth';
-import {Router, RouteParams, ComponentInstruction} from 'angular2/router';
+import {Router, ComponentInstruction} from 'angular2/router';
 
 export const isLoggedIn = (next: ComponentInstruction, prev: ComponentInstruction) => {
 	let injector: Injector = appInjector();

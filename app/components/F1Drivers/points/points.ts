@@ -1,7 +1,7 @@
 /**
  * Created by ravi on 28/8/15.
  */
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 @Component({
     selector: 'points',
     inputs:['points:cty'],

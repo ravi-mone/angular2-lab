@@ -5,7 +5,6 @@ import {aggregateFnPipe}                                      from "../pipes/agg
 import {CustomOrderByPipe}                                    from "../pipes/CustomOrderByPipe";
 import {appInjector}                                          from '../../helpers/app-injector';
 
-//var _ = require("lodash");
 
 @Component({
   selector: 'table-plugin',

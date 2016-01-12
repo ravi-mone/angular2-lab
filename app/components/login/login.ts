@@ -1,7 +1,7 @@
-import {Component, ViewEncapsulation, Input, Directive, ElementRef}     from 'angular2/core';
-import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS}                        from 'ng2-material/all';
+import {Component}     from 'angular2/core';
+import {MATERIAL_DIRECTIVES}                        from 'ng2-material/all';
 import {Router}                                                         from 'angular2/router';
-import {HTTP_REQUEST_PROVIDER}                                                        from '../Request/Request';
+import {HttpRequestProvider}                                                        from '../Request/Request';
 import User                                                             from '../../services/models/user';
 
 //This is the way to make the
@@ -17,10 +17,10 @@ class MdlUpgradeDirective {
 }*/
 
 
-@Component({
+@Component ({
   selector: 'login',
   templateUrl: './components/login/login.html',
-  providers: [HTTP_REQUEST_PROVIDER, User],
+  providers: [HttpRequestProvider, User],
   directives: [/*MdlUpgradeDirective, */ MATERIAL_DIRECTIVES]
 })
 export class LoginCmp {
@@ -28,13 +28,13 @@ export class LoginCmp {
   password = '';
   showError= false;
 
-  constructor(public user:User, private _router: Router, public authenticator : HTTP_REQUEST_PROVIDER){
+  constructor (public user:User, private _router: Router, public authenticator : HttpRequestProvider){
 
   }
 
   //This function is called when the user clicks on the submit button
   subitForm() {
-    if(this.username != 'demo123' && this.password != 'password'){
+    if(this.username !== 'demo123' && this.password !== 'password'){
       this.showError = true;
       return false;
     }
@@ -46,10 +46,10 @@ export class LoginCmp {
           this._router.navigate(['/About']);
         })
         .catch((e) => {
-
+          console.log(e);
         });
     }catch(e){
-      console.log(e)
+      console.log(e);
     }
   }
 }

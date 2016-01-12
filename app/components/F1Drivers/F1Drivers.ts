@@ -1,10 +1,7 @@
-import {Component, View, OnInit, Directive, Pipe}      from 'angular2/core';
+import {Component, OnInit}      from 'angular2/core';
 import {Http}                         from 'angular2/http';
 import {
-  RouteConfig,
   ROUTER_DIRECTIVES,
-  RouteDefinition,
-  RouterOutlet
 } from 'angular2/router';
 import {Points}                       from './points/points';
 import {Nationality}                  from './nationality/nationality';
@@ -36,7 +33,7 @@ export class F1Drivers implements OnInit {
   public ngOnInit(): void {
 
     try {
-      var result = this.list.get()
+      this.list.get()
       .subscribe(res => {
         let data = res.json();
         this.driverObj = data[0]['DriverStandings'];
@@ -45,7 +42,7 @@ export class F1Drivers implements OnInit {
         this.showTable= true;
       });
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
@@ -55,6 +52,8 @@ export class F1Drivers implements OnInit {
 
   showSelected(limitTo) {
     this.driverObj = this.driversList;
+
+
 
     this.driverObj = _.chunk(this.driverObj, limitTo)[0];
    // this.pageSelected = limitTo;
@@ -81,7 +80,7 @@ export class F1Drivers implements OnInit {
     var self = this;
     this.driverObj = this.driverObj.filter(function (Obj) {
 
-      return self.filterObj(Obj, Obj. Driver.givenName, nameFilter.value);
+      return self.filterObj(Obj, Obj['Driver']['givenName'], nameFilter.value);
     });
     this.pageSelected = this.driverObj.length;
   }
