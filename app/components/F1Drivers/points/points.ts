@@ -8,7 +8,7 @@ import {Component} from 'angular2/core';
     templateUrl: './components/F1Drivers/points/points.html'
 })
 export class Points {
-    constructor( ){
+    constructor( ) {
     }
 }
 

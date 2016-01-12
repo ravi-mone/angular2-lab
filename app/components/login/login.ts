@@ -28,13 +28,13 @@ export class LoginCmp {
   password = '';
   showError= false;
 
-  constructor (public user:User, private _router: Router, public authenticator : HttpRequestProvider){
+  constructor (public user:User, private _router: Router, public authenticator : HttpRequestProvider) {
 
   }
 
   //This function is called when the user clicks on the submit button
   subitForm() {
-    if(this.username !== 'demo123' && this.password !== 'password'){
+    if(this.username !== 'demo123' && this.password !== 'password') {
       this.showError = true;
       return false;
     }
@@ -48,7 +48,7 @@ export class LoginCmp {
         .catch((e) => {
           console.log(e);
         });
-    }catch(e){
+    }catch(e) {
       console.log(e);
     }
   }

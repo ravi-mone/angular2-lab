@@ -5,9 +5,9 @@ import {
 } from 'angular2/router';
 import {Points}                       from './points/points';
 import {Nationality}                  from './nationality/nationality';
-import {driverHeader}                 from './Header/driverheader';
+import {DriverHeader}                 from './Header/driverheader';
 import {NamesList}                    from '../../services/models/NameList';
-import {limitToPipe}                  from '../pipes/limitTo';
+import {LimitToPipe}                  from '../pipes/limitTo';
 
 
 
@@ -19,8 +19,8 @@ import {limitToPipe}                  from '../pipes/limitTo';
    * */
   providers: [NamesList],
   templateUrl: './components/F1Drivers/f1Drivers.html',
-  directives: [Points, Nationality, driverHeader, ROUTER_DIRECTIVES],
-  pipes:[limitToPipe]
+  directives: [Points, Nationality, DriverHeader, ROUTER_DIRECTIVES],
+  pipes:[LimitToPipe]
   //viewBindings: [httpInjectables]
 })
 export class F1Drivers implements OnInit {

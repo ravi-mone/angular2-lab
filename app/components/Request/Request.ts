@@ -45,7 +45,7 @@ export class HttpRequestProvider {
 
   }
 
-  getRequestHeaders(){
+  getRequestHeaders() {
     return (new Headers({
       /*'authorization' : 'Bearer '+this.user._user.access_token,*/
       'accept'        : 'application/json'
@@ -53,7 +53,7 @@ export class HttpRequestProvider {
     }));
   }
 
-  isUserLoggedIn(){
+  isUserLoggedIn() {
     return this.userSignedIn;
   }
 

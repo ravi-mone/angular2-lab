@@ -18,10 +18,10 @@ import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
   //encapsulation:ViewEncapsulation.None/Emulated/Native,
   encapsulation:ViewEncapsulation.None,
   directives :[TablePlugIn, F1Drivers, EventsDemo, MATERIAL_DIRECTIVES],
-  providers: [User, Auth],
+  providers: [User, Auth]
 })
 
-export class AboutCmp{
+export class AboutCmp {
 
   loadTable: boolean =false;
   reports:Object = null;
@@ -57,7 +57,7 @@ export class AboutCmp{
         this.loadTable=true;
       }, err => console.log('Error', err));
     }catch(e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
@@ -66,11 +66,11 @@ export class AboutCmp{
    * You’ll never run routerOnActivate if CanActivate fails.
    * CanActivate -> Yes? -> Component Loaded -> routerOnActivate
    * */
-  routerOnActivate(){
+  routerOnActivate() {
     this.auth.check()
       .then((result: any) => {
         this.loggedIn = result._signed_in;
-        if(!this.loggedIn){
+        if(!this.loggedIn) {
           this._router.navigate(['Login']);
         }
       })

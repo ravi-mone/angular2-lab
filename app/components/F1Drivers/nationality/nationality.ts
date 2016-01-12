@@ -8,5 +8,5 @@ import {Component} from 'angular2/core';
     templateUrl: './components/F1Drivers/nationality/nationality.html'
 })
 export class Nationality {
-    constructor(){ }
+    constructor() { }
 }

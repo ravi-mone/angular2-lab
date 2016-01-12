@@ -10,17 +10,17 @@ import {Ng2Highcharts} from 'ng2-highcharts/ng2-highcharts';
 export class Chart {
 	chartOptions: Object;
 
-  public ngOnInit(){
+  public ngOnInit() {
     console.log('ngOnInit', this.driverName);
     let data = this.chartData;
-    var obj={
+    var obj = {
       positions:[],
       points:[]
     };
 
-    for(let i=0; i<data.length; i++){
-      obj['positions'].push(parseInt(data[i].position, 10))
-      obj['points'].push(parseInt(data[i].points, 10))
+    for(let i=0; i<data.length; i++) {
+      obj['positions'].push(parseInt(data[i].position, 10));
+      obj['points'].push(parseInt(data[i].points, 10));
     }
 //
     this.chartOptions = {
@@ -46,6 +46,5 @@ export class Chart {
     };
   }
 	constructor() {
-
 	}
 }

@@ -3,7 +3,7 @@ import {DatePipe} from 'angular2/common';
 
 
 @Pipe({name: 'aggregateFn'})
-export class aggregateFnPipe {
+export class AggregateFnPipe {
   transform(value:string, args:string[]) : any {
     var decor:any =null;
     if(args[0]) {
@@ -11,7 +11,7 @@ export class aggregateFnPipe {
         case 'date':
           let datePipe = new DatePipe();
           let d= new Date(value);
-          if(!d.getDate()){
+          if(!d.getDate()) {
             d = new Date(value.replace('+', ''));
           }
           decor = datePipe.transform(d, 'fulldate');
@@ -19,7 +19,7 @@ export class aggregateFnPipe {
       }
       switch(args[0].substr(0, args[0].indexOf(':'))) {
         case 'fixed':
-          let number = args[0].substr(args[0].indexOf(':') + 1)
+          let number = args[0].substr(args[0].indexOf(':') + 1);
           decor = parseFloat(value).toFixed(number);
           break;
         case 'concat':
@@ -29,6 +29,6 @@ export class aggregateFnPipe {
       }
       return decor;
     }
-    return value
+    return value;
   }
 }
