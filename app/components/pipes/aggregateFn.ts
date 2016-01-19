@@ -10,7 +10,7 @@ export class AggregateFnPipe {
       switch(args[0]) {
         case 'date':
           let datePipe = new DatePipe();
-          let d= new Date(value);
+          let d = new Date(value);
           if(!d.getDate()) {
             d = new Date(value.replace('+', ''));
           }
@@ -19,7 +19,7 @@ export class AggregateFnPipe {
       }
       switch(args[0].substr(0, args[0].indexOf(':'))) {
         case 'fixed':
-          let number = args[0].substr(args[0].indexOf(':') + 1);
+          let number = parseInt(args[0].substr(args[0].indexOf(':') + 1), 10);
           decor = parseFloat(value).toFixed(number);
           break;
         case 'concat':

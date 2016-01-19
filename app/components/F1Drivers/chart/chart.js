@@ -13,15 +13,15 @@ var Chart = (function () {
     function Chart() {
     }
     Chart.prototype.ngOnInit = function () {
-        console.log('ngOnInit', this.driverName);
+        console.log('ngOnInit', this.driverName, this.chartData);
         var data = this.chartData;
         var obj = {
             positions: [],
             points: []
         };
         for (var i = 0; i < data.length; i++) {
-            obj['positions'].push(parseInt(data[i].position, 10));
-            obj['points'].push(parseInt(data[i].points, 10));
+            obj['positions'].push(parseInt(data[i]['position'], 10));
+            obj['points'].push(parseInt(data[i]['points'], 10));
         }
         this.chartOptions = {
             chart: {
@@ -39,8 +39,8 @@ var Chart = (function () {
                 data: obj.positions
             },
             series: [{
-                    name: "Name : " + (this.driverName.Driver.givenName + ' ' + this.driverName.Driver.familyName),
-                    data: [parseInt(this.driverName.position, 10)]
+                    name: "Name : " + (this.driverName['Driver']['givenName'] + ' ' + this.driverName['Driver']['familyName']),
+                    data: [parseInt(this.driverName['position'], 10)]
                 }]
         };
     };

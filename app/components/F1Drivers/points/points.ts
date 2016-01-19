@@ -7,8 +7,5 @@ import {Component} from 'angular2/core';
     inputs:['points:cty'],
     templateUrl: './components/F1Drivers/points/points.html'
 })
-export class Points {
-    constructor( ) {
-    }
-}
+export class Points {}
 

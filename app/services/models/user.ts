@@ -18,7 +18,7 @@ export default class UserProvider {
   public setUser(user) {
     this._user      = user;
     this._signed_in = !!user;
-    localStorage.setItem(this.SIGNED_IN_KEY, this._signed_in);
+    localStorage.setItem(this.SIGNED_IN_KEY, JSON.stringify(this._signed_in));
     if (this._signed_in) {
       localStorage.setItem(this.USER_KEY, JSON.stringify(this._user));
     } else {

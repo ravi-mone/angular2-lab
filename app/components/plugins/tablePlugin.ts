@@ -17,12 +17,13 @@ export class TablePlugIn implements OnInit {
   columns=[];
   defaultSort='-Select-';
   title=null;
+  operator=null;
   ngOnInit() {
     this.columns = this.data[0].columns;
   }
   constructor(private _router: Router) {
   }
-  operator=null;
+
   sortBy(data, column) {
     this.operator = (this.operator === '') ? '-' : '';
     var customOrderBy = new CustomOrderByPipe();

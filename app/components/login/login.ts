@@ -24,8 +24,8 @@ class MdlUpgradeDirective {
   directives: [/*MdlUpgradeDirective, */ MATERIAL_DIRECTIVES]
 })
 export class LoginCmp {
-  username= '';
-  password = '';
+  username:string= '';
+  password:string = '';
   showError= false;
 
   constructor (public user:User, private _router: Router, public authenticator : HttpRequestProvider) {

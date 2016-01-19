@@ -1,16 +1,12 @@
-import {Component, OnInit}      from 'angular2/core';
+import {Component, OnInit}            from 'angular2/core';
 import {Http}                         from 'angular2/http';
-import {
-  ROUTER_DIRECTIVES,
-} from 'angular2/router';
+import {ROUTER_DIRECTIVES}            from 'angular2/router';
 import {Points}                       from './points/points';
 import {Nationality}                  from './nationality/nationality';
 import {DriverHeader}                 from './Header/driverheader';
 import {NamesList}                    from '../../services/models/NameList';
 import {LimitToPipe}                  from '../pipes/limitTo';
-
-
-
+import * as chunk                     from 'lodash/array/chunk';
 @Component({
   selector: 'f1Drivers',
   /*
@@ -52,10 +48,7 @@ export class F1Drivers implements OnInit {
 
   showSelected(limitTo) {
     this.driverObj = this.driversList;
-
-
-
-    this.driverObj = _.chunk(this.driverObj, limitTo)[0];
+    this.driverObj = chunk(this.driverObj, limitTo)[0];
    // this.pageSelected = limitTo;
   }
 

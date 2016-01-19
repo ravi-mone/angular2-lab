@@ -40,11 +40,6 @@ export class Auth {
 			}
 		});
 	}
-
-	logout() {
-		this.user = false;
-		this.isAdmin = false;
-	}
 }
 
 export const AUTH_PROVIDERS = [Auth];
