@@ -4,8 +4,8 @@ import {DatePipe} from 'angular2/common';
 
 @Pipe({name: 'aggregateFn'})
 export class AggregateFnPipe {
-  transform(value:string, args:string[]) : any {
-    var decor:any =null;
+  transform(value:string, args:string[]) : string {
+    var decor:string =null;
     if(args[0]) {
       switch(args[0]) {
         case 'date':
@@ -14,7 +14,7 @@ export class AggregateFnPipe {
           if(!d.getDate()) {
             d = new Date(value.replace('+', ''));
           }
-          decor = datePipe.transform(d, 'fulldate');
+          decor = datePipe.transform(d, []);
           break;
       }
       switch(args[0].substr(0, args[0].indexOf(':'))) {

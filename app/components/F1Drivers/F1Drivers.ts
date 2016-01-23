@@ -6,7 +6,7 @@ import {Nationality}                  from './nationality/nationality';
 import {DriverHeader}                 from './Header/driverheader';
 import {NamesList}                    from '../../services/models/NameList';
 import {LimitToPipe}                  from '../pipes/limitTo';
-import * as chunk                     from 'lodash/array/chunk';
+//import * as chunk                     from 'lodash/array/chunk';
 @Component({
   selector: 'f1Drivers',
   /*
@@ -47,9 +47,9 @@ export class F1Drivers implements OnInit {
   }
 
   showSelected(limitTo) {
-    this.driverObj = this.driversList;
-    this.driverObj = chunk(this.driverObj, limitTo)[0];
-   // this.pageSelected = limitTo;
+    //this.driverObj = this.driversList;
+    //this.driverObj = chunk(this.driverObj, limitTo)[0];
+    this.pageSelected = limitTo;
   }
 
   //Function called when the user clicks on the search button.
