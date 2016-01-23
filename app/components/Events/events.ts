@@ -1,12 +1,13 @@
 import { Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {NamesList} from '../../services/models/NameList';
+import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 
 @Component({
   selector: 'events-demo',
   providers: [NamesList],
   templateUrl: './components/Events/events.html',
-  directives: [CORE_DIRECTIVES]
+  directives: [CORE_DIRECTIVES, MATERIAL_DIRECTIVES]
 })
 
 export class EventsDemo {
@@ -14,7 +15,6 @@ export class EventsDemo {
 
   constructor(public list:NamesList) {
     this.articles = this.list.articleList;
-    console.log(this.articles);
   }
 
   addArticle(title, link) {
@@ -25,7 +25,6 @@ export class EventsDemo {
   }
 
   deleteArticle(index) {
-    console.log(index);
     this.list.deleteArticle(index);
   }
 }

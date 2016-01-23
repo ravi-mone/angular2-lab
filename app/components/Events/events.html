@@ -1,32 +1,37 @@
-    <h1>To Get Fimilar with ngModel</h1>
-    <input type="text" [(ngModel)]="searchQuery">
-    {{searchQuery}}
-
-    <hr />
-
-<section class="new-link">
-    <form (submit)="addArticle(newtitle, newlink)" >
-    <div class="control-group">
-        <div><label >Title:</label></div>
-        <div><input name="title" #newtitle></div>
-    </div>
-    <div class="control-group">
-        <div><label >Link:</label></div>
-        <div><input name="link" #newlink></div>
-    </div>
-
-    <button type="submit" >Submit Link</button>
+<div>
+  <md-card-content layout="row" layout-align="center">
+    <form (submit)="addArticle(newtitle, newlink)">
+      <md-card-content layout="row" layout-align="center">
+        <md-input-container>
+          <label for="label">Title </label>
+          <input md-input type="text" id="label" name="title" #newtitle>
+        </md-input-container>
+        <md-input-container>
+          <label for="content">Link </label>
+          <input md-input type="text" id="content" name="link" #newlink>
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <button md-raised-button class="md-raised md-primary" type="submit">Submit Link</button>
+      </md-card-actions>
     </form>
-</section>
-<hr  />
-<section>
-    <!--*ng-for="#article of articles | limitTo:2" -->
-    <div *ngIf="articles.length" >
-        <ul >
-            <li><b>Title</b> |  <b>Link</b></li>
-        </ul>
-        <ul *ngFor="#article of articles;  #i = index">
-            <li> {{i + 1}} : {{article.title}} | {{article.link}} <button (click)="deleteArticle(i)">X</button></li>
-        </ul>
-    </div>
-</section>
+  </md-card-content>
+</div>
+
+<hr *ngIf="articles.length" />
+<div>
+  <md-content >
+    <md-list>
+      <md-subheader class="md-no-sticky">{{articles.length}} line item</md-subheader>
+      <md-list-item class="md-3-line" *ngFor="#article of articles;  #i = index">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ article.title }} </h3>
+          <h4> {{ article.link }}</h4>
+          <p style="display: inline">
+            <button md-raised-button class="md-raised md-primary" (click)="deleteArticle(i)">X</button>
+          </p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</div>

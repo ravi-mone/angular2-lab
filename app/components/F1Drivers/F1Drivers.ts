@@ -5,8 +5,7 @@ import {Points}                       from './points/points';
 import {Nationality}                  from './nationality/nationality';
 import {DriverHeader}                 from './Header/driverheader';
 import {NamesList}                    from '../../services/models/NameList';
-import {LimitToPipe}                  from '../pipes/limitTo';
-//import * as chunk                     from 'lodash/array/chunk';
+import {SlicePipe}                    from 'angular2/common';
 @Component({
   selector: 'f1Drivers',
   /*
@@ -15,8 +14,7 @@ import {LimitToPipe}                  from '../pipes/limitTo';
    * */
   providers: [NamesList],
   templateUrl: './components/F1Drivers/f1Drivers.html',
-  directives: [Points, Nationality, DriverHeader, ROUTER_DIRECTIVES],
-  pipes:[LimitToPipe]
+  directives: [Points, Nationality, DriverHeader, ROUTER_DIRECTIVES]
   //viewBindings: [httpInjectables]
 })
 export class F1Drivers implements OnInit {
@@ -47,9 +45,10 @@ export class F1Drivers implements OnInit {
   }
 
   showSelected(limitTo) {
-    //this.driverObj = this.driversList;
-    //this.driverObj = chunk(this.driverObj, limitTo)[0];
-    this.pageSelected = limitTo;
+    this.driverObj = this.driversList;
+    //Using Pipe Inside the class
+    var slicePipe = new SlicePipe();
+    this.driverObj = slicePipe.transform(this.driverObj, [0, limitTo]);
   }
 
   //Function called when the user clicks on the search button.

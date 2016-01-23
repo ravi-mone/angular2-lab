@@ -4,9 +4,9 @@
     <li class="list-group-item">
       <div class="input-group">
         <!--NOTE : reference names should be always in lowwercase only -->
-        <input name="driver" #namefilter  class="form-control" placeholder="Search...">
-        <span class="input-group-addon glyphicon glyphicon-search" (click)="filterByNames(namefilter, newtitle)" style="top:0px;cursor: pointer;" ></span>
-        <span style="margin-left: 20px;cursor: pointer; top: -6px;" title="Reset" class="glyphicon glyphicon-refresh" (click)="nameFilter.value = '';driverObj = driversList;" ></span>
+        <input name="driver" #namefilter class="form-control" placeholder="Search...">
+        <span class="input-group-addon glyphicon glyphicon-search" (click)="filterByNames(namefilter, newtitle)" style="top:0px;cursor: pointer;"></span>
+        <span style="margin-left: 20px;cursor: pointer; top: -6px;" title="Reset" class="glyphicon glyphicon-refresh" (click)="namefilter.value = ''; driverObj = driversList;pageSelected =driversList.length;"></span>
       </div>
     </li>
   </ul>
@@ -20,20 +20,14 @@
       <li><a (click)="showSelected(driversList.length);">All</a></li>
     </ul>
   </div>
-  <!--<button type="button" class="btn btn-primary">Showing {{(driverObj.length >= 1 && driverObj.length < driversList.length)? driverObj.length :  pageSelected }} records</button>-->
-
-  <!--NOTE : since you are using ngSwitch, ngSwitchWhen, ngSwitch-default ,
-  So import :
-  import { NgSwitch, NgSwitchWhen, NgSwitchDefault} from 'angular2/core';
-  -->
-  Total  {{driverObj.length}},  [
+  Total {{driverObj.length}}, [
 
 
 <span [ngSwitch]="pageSelected" class="float-left">
-       <template  class="glyphicon glyphicon-user"></template>
+       <template class="glyphicon glyphicon-user"></template>
        <template [ngSwitchWhen]="0">No drivers. :-(</template>
        <template [ngSwitchWhen]="1">1 driver!</template>
-       <template ngSwitchDefault >
+       <template ngSwitchDefault>
          {{driverObj[0].Driver.givenName}}, {{driverObj[1].Driver.givenName}}
          and
          <span class="badge badge-info">{{driverObj.length - 2}}</span>
@@ -42,24 +36,24 @@
  </span>
 
   ]
-  <hr />
+  <hr/>
   <!--Header component -->
 
   <driverHeader [driverdata]="driverObj"></driverHeader>
   <!--Header component-->
   <hr/>
   <div class="row">
-    <ul class="list-group table"   *ngFor="#driver of driverObj | slice:pageSelected ; #i= index"> <!--TODO , PIPE : -->
-      <li class="" >
+    <ul class="list-group table" *ngFor="#driver of driverObj; #i= index"> <!--TODO , PIPE : -->
+      <li class="">
 
         <div class="col-md-12">
-          <div >{{i + 1}}</div>
+          <div>{{i + 1}}</div>
           <div class="col-md-1">
-            <img src="assets/images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"  />
+            <img src="assets/images/{{driver.Driver.driverId}}.jpg" class="img-thumbnail" width="100" height="50" border="0"/>
           </div>
           <div class="col-md-4">
             <div class="col-md-12">
-              <div class="col-md-3" style="text-align: right;"> <a [routerLink]="['/Details', {name : driver.position}]">{{driver.Driver.givenName}}</a></div>
+              <div class="col-md-3" style="text-align: right;"><a [routerLink]="['/Details', {name : driver.position}]">{{driver.Driver.givenName}}</a></div>
               <div class="col-md-4" style="text-align: right;">{{driver.Driver.familyName}}</div>
               <div class="col-md-5">
                 <nationality [cty]="driver.Driver.nationality"></nationality>
@@ -71,7 +65,7 @@
           </div>
           <div class="col-md-6">
             <div class="col-md-12">
-              <points [cty]="driver.points" ></points>
+              <points [cty]="driver.points"></points>
               <div class="col-md-3">
                 <button type="button" class="btn btn-default btn-lg" disabled>
                   <span class="glyphicon glyphicon-user"></span> {{driver.position}}
@@ -86,11 +80,13 @@
                 </button>
               </div>
               <div class="col-md-3">
-                <a href="{{driver.Driver.url}}" target="_blank"><button type="button" class="btn btn-default btn-lg" >
+                <a href="{{driver.Driver.url}}" target="_blank">
+                  <button type="button" class="btn btn-default btn-lg">
                                     <span class="glyphicon glyphicon-globe">
                                         Wiki
                                     </span>
-                </button></a>
+                  </button>
+                </a>
               </div>
             </div>
 

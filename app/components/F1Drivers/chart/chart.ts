@@ -12,7 +12,7 @@ export class Chart {
   driverName:Object;
   chartData:Array<Object>;
   public ngOnInit() {
-    console.log('ngOnInit', this.driverName, this.chartData);
+    //console.log('ngOnInit', this.driverName, this.chartData);
     let data = this.chartData;
     var obj = {
       positions:[],
