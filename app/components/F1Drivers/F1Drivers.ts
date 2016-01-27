@@ -34,6 +34,10 @@ export class F1Drivers implements OnInit {
          this.driversList = this.driverObj;
         this.pageSelected = this.driverObj.length;
         this.showTable= true;
+      }, err => {
+        console.log(err);
+      }, () => {
+        console.log('Done!');
       });
     } catch (e) {
       console.log(e);

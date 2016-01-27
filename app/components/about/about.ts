@@ -58,8 +58,9 @@ export class AboutCmp {
             ];
           this.reports = [{data: data, columns: this.columns}];
 
-          this.loadTable = true;
-        }, err => console.log('Error', err));
+
+        }, err => console.log('Error', err),
+          () => { this.loadTable = true;} );
     } catch (e) {
       console.log(e);
     }
