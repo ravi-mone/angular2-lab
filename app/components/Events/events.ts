@@ -7,7 +7,8 @@ import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
   selector: 'events-demo',
   providers: [NamesList],
   templateUrl: './components/Events/events.html',
-  directives: [CORE_DIRECTIVES, MATERIAL_DIRECTIVES]
+  directives: [CORE_DIRECTIVES, MATERIAL_DIRECTIVES],
+  styles:[`#results { float:right; margin:20px; padding:20px; border:1px solid; background:#ccc; }`]
 })
 
 export class EventsDemo {
@@ -15,13 +16,39 @@ export class EventsDemo {
 
   constructor(public list:NamesList) {
     this.articles = this.list.articleList;
+    let webcam = window['Webcam'];
+    webcam.set({
+      // live preview size
+      width: 220,
+      height: 140,
+
+      // device capture size
+      dest_width: 220,
+      dest_height: 140,
+
+      // final cropped size
+      crop_width: 240,
+
+      // format and quality
+      image_format: 'jpeg',
+      jpeg_quality: 90
+    });
+
+    webcam.attach( '#my_camera' );
+
   }
 
-  addArticle(title, link) {
-    console.log('Adding article with title', title.value, 'and link', link.value);
-    this.list.postArticle({title: title.value, link: link.value});
-    title.value = '';
-    link.value = '';
+  addArticle(firstName, lastName) {
+    console.log('Adding article with title', firstName.value, 'and link', lastName.value);
+    let $this = this;
+    let webcam = window['Webcam'];
+    // take snapshot and get image data
+    webcam.snap( function(data_uri) {
+      // display results in page
+      $this.list.postArticle({firstName: firstName.value, lastName: lastName.value, snap:data_uri});
+      firstName.value = '';
+      lastName.value = '';
+    } );
   }
 
   deleteArticle(index) {

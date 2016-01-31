@@ -1,18 +1,22 @@
 <div>
   <md-card-content layout="row" layout-align="center">
-    <form (submit)="addArticle(newtitle, newlink)">
+    <form (submit)="addArticle(firstName, lastName)">
+      <label for="content">Take a Pick </label>
+      <div id="my_camera" style="width:320px; height:240px;"></div>
+      <input type="hidden" id="my_result" />
+
       <md-card-content layout="row" layout-align="center">
         <md-input-container>
-          <label for="label">Title </label>
-          <input md-input type="text" id="label" name="title" #newtitle>
+          <label for="label">First Name </label>
+          <input md-input type="text" id="label" name="firstName" #firstName>
         </md-input-container>
         <md-input-container>
-          <label for="content">Link </label>
-          <input md-input type="text" id="content" name="link" #newlink>
+          <label for="content">Last Name </label>
+          <input md-input type="text" id="content" name="lastName" #lastName>
         </md-input-container>
       </md-card-content>
       <md-card-actions layout="row" layout-align="center">
-        <button md-raised-button class="md-raised md-primary" type="submit">Submit Link</button>
+        <button md-raised-button class="md-raised md-primary" type="submit">Submit</button>
       </md-card-actions>
     </form>
   </md-card-content>
@@ -25,8 +29,11 @@
       <md-subheader class="md-no-sticky">{{articles.length}} line item</md-subheader>
       <md-list-item class="md-3-line" *ngFor="#article of articles;  #i = index">
         <div class="md-list-item-text" layout="column">
-          <h3>{{ article.title }} </h3>
-          <h4> {{ article.link }}</h4>
+          <div id="results">
+            <img src="{{ article.snap }}"/>
+            <h3>{{ article.firstName }} </h3>
+            <h4> {{ article.lastName }}</h4>
+          </div>
           <p style="display: inline">
             <button md-raised-button class="md-raised md-primary" (click)="deleteArticle(i)">X</button>
           </p>
@@ -35,3 +42,8 @@
     </md-list>
   </md-content>
 </div>
+
+
+
+
+

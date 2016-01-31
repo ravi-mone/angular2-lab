@@ -1,0 +1,3 @@
+@ravi-mone OnPush change detection works best when using event emitters, observables and markForCheck()... it should mostly be used for speeding up your app by it only having to detect changes when necessary, but @robwormald says it's a hack if you use it to cover up "element has changed after checked" bugs...those instances should trigger you to fix your code first instead of just trying to change up change detection.
+
+escardi
