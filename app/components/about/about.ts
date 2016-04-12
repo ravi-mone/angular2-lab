@@ -8,6 +8,7 @@ import {F1Drivers}                        from '../F1Drivers/F1Drivers';
 import {EventsDemo}                       from '../Events/events';
 import {appInjector}                      from '../../helpers/app-injector';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
+import {RouterLink} from "angular2/router";
 
 @Component({
   selector: 'about',
@@ -17,7 +18,7 @@ import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
    The default is ViewEncapsulation.Emulated if the view has styles, otherwise ViewEncapsulation.None.*/
   //encapsulation:ViewEncapsulation.None/Emulated/Native,
   encapsulation: ViewEncapsulation.None,
-  directives: [TablePlugIn, F1Drivers, EventsDemo, MATERIAL_DIRECTIVES],
+  directives: [TablePlugIn, F1Drivers, EventsDemo, MATERIAL_DIRECTIVES, RouterLink],
   providers: [User, Auth]
 })
 

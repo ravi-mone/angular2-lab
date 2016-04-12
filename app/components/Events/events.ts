@@ -1,4 +1,5 @@
 import { Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES, RouterLink}            from 'angular2/router';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {NamesList} from '../../services/models/NameList';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
@@ -7,7 +8,7 @@ import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
   selector: 'events-demo',
   providers: [NamesList],
   templateUrl: './components/Events/events.html',
-  directives: [CORE_DIRECTIVES, MATERIAL_DIRECTIVES],
+  directives: [CORE_DIRECTIVES, MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, RouterLink],
   styles:[`#results { float:right; margin:20px; padding:20px; border:1px solid; background:#ccc; }`]
 })
 
@@ -15,6 +16,9 @@ export class EventsDemo {
   articles:Array<Object>;
 
   constructor(public list:NamesList) {
+
+
+
     this.articles = this.list.articleList;
     let webcam = window['Webcam'];
     webcam.set({
@@ -51,7 +55,7 @@ export class EventsDemo {
     } );
   }
 
-  deleteArticle(index) {
+  /*deleteArticle(index) {
     this.list.deleteArticle(index);
-  }
+  }*/
 }
