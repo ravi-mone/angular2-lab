@@ -16,11 +16,10 @@ export class EventsDemo {
   articles:Array<Object>;
 
   constructor(public list:NamesList) {
-
-
-
     this.articles = this.list.articleList;
     let webcam = window['Webcam'];
+
+
     webcam.set({
       // live preview size
       width: 220,
@@ -49,10 +48,12 @@ export class EventsDemo {
     // take snapshot and get image data
     webcam.snap( function(data_uri) {
       // display results in page
-      $this.list.postArticle({firstName: firstName.value, lastName: lastName.value, snap:data_uri});
-      firstName.value = '';
-      lastName.value = '';
+      $this.list.postArticle({firstName: '', lastName: '', snap:data_uri});
+     // firstName.value = '';
+      //lastName.value = '';
     } );
+    webcam.off();
+
   }
 
   /*deleteArticle(index) {

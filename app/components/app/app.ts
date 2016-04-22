@@ -2,7 +2,8 @@ import {Component, ViewEncapsulation} from 'angular2/core';
 import {
   RouteConfig,
   ROUTER_DIRECTIVES,
-  Router
+  Router,
+    AsyncRoute
 } from 'angular2/router';
 import {LoginCmp}         from '../login/login';
 import {AboutCmp}         from '../about/about';
@@ -21,7 +22,12 @@ import {LetsDrive}          from '../LetsDrive/letsDrive';
 })
 @RouteConfig([
   { path: '/login',         component: LoginCmp,      as: 'Login', useAsDefault:true },
-  { path: '/about',         component: AboutCmp,      as: 'About'   },
+  new AsyncRoute({
+    path: '/about',
+    loader: () => System.import('./components/about/about').then(m => m.AboutCmp),
+    name: 'About'
+  }),
+ /* { path: '/about',         component: AboutCmp,      as: 'About'   },*/
   { path: '/details/:name', component: Details,       as: 'Details' },
   { path: '/letsDrive', component: LetsDrive,       as: 'LetsDrive' }
 ])
@@ -29,6 +35,7 @@ import {LetsDrive}          from '../LetsDrive/letsDrive';
 
 export class AppCmp  {
   constructor(public router: Router) {
+
   }
 }
 

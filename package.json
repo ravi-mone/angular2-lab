@@ -88,6 +88,7 @@
     "bootstrap": "^3.3.5",
     "es6-module-loader": "^0.17.8",
     "es6-shim": "^0.33.3",
+    "excalibur": "^0.2.2",
     "highcharts": "^4.2.1",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
